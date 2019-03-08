@@ -1,0 +1,26 @@
+{
+  "name": "online-scraper",
+  "version": "0.1.0",
+  "description": "Simple static page to write JS code and to scrape online.",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedoor/online-scraper.git"
+  },
+  "keywords": [
+    "scraping",
+    "online"
+  ],
+  "author": "Omar Desogus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cedoor/online-scraper/issues"
+  },
+  "homepage": "https://github.com/cedoor/online-scraper#readme",
+  "devDependencies": {
+    "live-server": "1.2.1",
+    "standard": "12.0.1"
+  }
+}
