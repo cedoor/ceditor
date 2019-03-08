@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scraping online</title>
+</head>
+<style>
+    body, html {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        overflow-y: hidden;
+        display: flex;
+    }
+
+    nav {
+        flex-basis: 40px;
+    }
+
+    nav > div {
+        text-align: center;
+        padding: 5px 0 7px 0;
+        background-color: lightgray;
+        cursor: pointer;
+        position: relative;
+        color: #333333;
+    }
+
+    nav > div:active {
+        top: 1px;
+    }
+
+    div#editor {
+        flex-grow: 1;
+    }
+</style>
+<body>
+<nav>
+    <div onclick="run()">&#9654;</div>
+</nav>
+<div id="editor">
+    // Get the dom reference of google page.
+    const dom = await get('http://google.com');
+
+    // Print the title 'Google' in the console.
+    console.log(dom.querySelector('title').innerText)
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.3/ace.js"></script>
+<script>
+    const dom = {
+        editor: document.querySelector('#editor'),
+        resize: document.querySelector('#resize')
+    };
+
+    // pass options to ace.edit
+    const editor = ace.edit(dom.editor, {
+        mode: "ace/mode/javascript",
+        selectionStyle: "text",
+        theme: 'ace/theme/monokai',
+        fontSize: 18
+    });
+
+    if (localStorage.getItem('code')) {
+        editor.setValue(localStorage.getItem('code'), 1)
+    }
+
+    function get(url) {
+        return new Promise(function (resolve) {
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const el = document.createElement('html');
+                    el.innerHTML = this.responseText;
+                    resolve(el)
+                }
+            };
+
+            xhttp.open("GET", `https://cors-anywhere.herokuapp.com/${url}`, true);
+            xhttp.send();
+        });
+    }
+
+    function run() {
+        const javascript = `(async () => {${editor.getValue()}})()`;
+        eval(javascript)
+    }
+
+    document.onkeyup = function () {
+        localStorage.setItem('code', editor.getValue())
+    }
+</script>
+</html>
