@@ -1,6 +1,6 @@
-# Online Scraper
+# Ceditor
 
-Simple static page to write JS code and to scrape online.
+Simple static page to write JS code.
 
 ## Development
 
@@ -50,7 +50,7 @@ Examples:
     git branch -b style/header
 
 ## License
-* See [LICENSE](https://github.com/cedoor/onlne-scraper/blob/master/LICENSE) file
+* See [LICENSE](https://github.com/cedoor/ceditor/blob/master/LICENSE) file
 
 ## Contact
 #### Developer

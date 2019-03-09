@@ -1,0 +1,7 @@
+(async () => {
+  // Get the html reference of a website.
+  const html = await getHTML('http://google.com')
+  const title = html.querySelector('title').innerText
+  // Print the value in the console above.
+  log(title)
+})()

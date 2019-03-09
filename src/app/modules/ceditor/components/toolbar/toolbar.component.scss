@@ -1,0 +1,25 @@
+div#app-toolbar {
+  flex: 1;
+  border-bottom: 15px solid #2F3129;
+
+  mat-toolbar {
+    height: 40px;
+
+    .title {
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-right: 16px;
+      border-right: 1px solid lightgray;
+    }
+
+    button {
+      margin-left: 5px;
+
+      mat-icon {
+        color: #2F3129;
+      }
+    }
+  }
+}

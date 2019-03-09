@@ -1,0 +1,15 @@
+<div id="app-toolbar">
+  <mat-toolbar>
+    <span class="title">Ceditor</span>
+    <button mat-icon-button
+            (click)="runCode()"
+            matTooltip="Run the code (Ctrl + Enter)">
+      <mat-icon aria-label="">play_arrow</mat-icon>
+    </button>
+    <button mat-icon-button
+            (click)="clearConsole()"
+            matTooltip="Clear the console (Ctrl + l)">
+      <mat-icon aria-label="">clear</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>

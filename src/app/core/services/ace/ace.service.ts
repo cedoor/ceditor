@@ -1,0 +1,52 @@
+import {Injectable} from '@angular/core'
+import {UtilsService} from '../utils/utils.service'
+import {LoggerService} from '../logger/logger.service'
+
+declare const ace: any
+declare const ts: any
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AceService {
+
+  private editor: any
+
+  constructor (private utilsService: UtilsService,
+               private loggerService: LoggerService) {
+  }
+
+  public createEditor (htmlElement: HTMLElement) {
+    this.editor = ace.edit(htmlElement, {
+      mode: 'ace/mode/typescript',
+      selectionStyle: 'text',
+      theme: 'ace/theme/monokai',
+      fontSize: 18
+    })
+  }
+
+  public setCode (code: string) {
+    this.editor.setValue(code, 1)
+  }
+
+  public getCode (): string {
+    return this.editor.getValue()
+  }
+
+  public addCommand (name: string, keys: any, callback: () => void) {
+    this.editor.commands.addCommand({
+      name,
+      exec: callback.bind(this),
+      bindKey: keys
+    })
+  }
+
+  public async run () {
+    const getHTML = this.utilsService.getHTML.bind(this.utilsService)
+    const library = this.utilsService.library.bind(this.utilsService)
+    const log = this.loggerService.log.bind(this.loggerService)
+
+    await eval(ts.transpile(`(async () => { ${this.editor.getValue()}})()`))
+  }
+
+}
