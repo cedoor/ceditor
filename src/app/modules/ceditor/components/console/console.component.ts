@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
-import {LoggerService} from '../../../../core/services/logger/logger.service'
+import {ConsoleService} from '../../../../core/services/console/console.service'
 
 @Component({
   selector: 'app-console',
@@ -10,11 +10,11 @@ export class ConsoleComponent implements OnInit {
 
   @ViewChild('console') public loggerReference: ElementRef
 
-  constructor (private loggerService: LoggerService) {
+  constructor (private consoleService: ConsoleService) {
   }
 
   ngOnInit () {
-    this.loggerService.createLogger(this.loggerReference.nativeElement)
+    this.consoleService.createLogger(this.loggerReference.nativeElement)
   }
 
 }

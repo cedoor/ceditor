@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {AceService} from '../../../../core/services/ace/ace.service'
-import {LoggerService} from '../../../../core/services/logger/logger.service'
+import {ConsoleService} from '../../../../core/services/console/console.service'
 
 @Component({
   selector: 'app-toolbar',
@@ -10,7 +10,7 @@ import {LoggerService} from '../../../../core/services/logger/logger.service'
 export class ToolbarComponent {
 
   constructor (private aceService: AceService,
-               private loggerService: LoggerService) {
+               private consoleService: ConsoleService) {
   }
 
   public runCode () {
@@ -18,7 +18,7 @@ export class ToolbarComponent {
   }
 
   public clearConsole () {
-    this.loggerService.clear()
+    this.consoleService.clear()
   }
 
 }

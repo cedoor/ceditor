@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {AceService} from '../../../../core/services/ace/ace.service'
 import {HttpService} from '../../../../core/http/http.service'
-import {LoggerService} from '../../../../core/services/logger/logger.service'
+import {ConsoleService} from '../../../../core/services/console/console.service'
 
 @Component({
   selector: 'app-editor',
@@ -13,7 +13,7 @@ export class EditorComponent implements OnInit {
   @ViewChild('editor') public editorReference: ElementRef
 
   constructor (private aceService: AceService,
-               private loggerService: LoggerService,
+               private loggerService: ConsoleService,
                private httpService: HttpService) {
   }
 

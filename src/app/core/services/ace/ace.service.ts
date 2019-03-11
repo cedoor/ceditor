@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core'
 import {UtilsService} from '../utils/utils.service'
-import {LoggerService} from '../logger/logger.service'
+import {ConsoleService} from '../console/console.service'
 
 declare const ace: any
 declare const ts: any
@@ -13,7 +13,7 @@ export class AceService {
   private editor: any
 
   constructor (private utilsService: UtilsService,
-               private loggerService: LoggerService) {
+               private consoleService: ConsoleService) {
   }
 
   public createEditor (htmlElement: HTMLElement) {
@@ -44,7 +44,7 @@ export class AceService {
   public async run () {
     const getHTML = this.utilsService.getHTML.bind(this.utilsService)
     const library = this.utilsService.library.bind(this.utilsService)
-    const log = this.loggerService.log.bind(this.loggerService)
+    const log = this.consoleService.log.bind(this.consoleService)
 
     await eval(ts.transpile(`(async () => { ${this.editor.getValue()}})()`))
   }
