@@ -24,4 +24,9 @@ div#app-ceditor {
     flex-basis: 250px;
     display: flex;
   }
+
+  > app-footer {
+    flex-basis: 35px;
+    display: flex;
+  }
 }

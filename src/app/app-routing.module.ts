@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: CeditorComponent
-  }
+  },
+  {
+    path: ':key',
+    component: CeditorComponent
+  },
+  { path: '**', component: CeditorComponent}
 ]
 
 @NgModule({

@@ -24,7 +24,7 @@ export class IpfsService {
    * Returns a file addressed by a valid IPFS Path.
    */
   public async cat (ipfsPath): Promise<string> {
-    return (await this.ipfs.cat(ipfsPath)).toString('utf8')
+    return (await this.ipfs.cat(ipfsPath)).toString()
   }
 
   /**

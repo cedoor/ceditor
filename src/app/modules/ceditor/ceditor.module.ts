@@ -3,7 +3,8 @@ import {SharedModule} from '../../shared/shared.module'
 import {ToolbarComponent} from './components/toolbar/toolbar.component'
 import {ConsoleComponent} from './components/console/console.component'
 import {EditorComponent} from './components/editor/editor.component'
-import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material'
+import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
+import { FooterComponent } from './components/footer/footer.component'
 
 @NgModule({
   imports: [
@@ -15,12 +16,14 @@ import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/materia
   declarations: [
     ToolbarComponent,
     ConsoleComponent,
-    EditorComponent
+    EditorComponent,
+    FooterComponent
   ],
   exports: [
     ToolbarComponent,
     ConsoleComponent,
-    EditorComponent
+    EditorComponent,
+    FooterComponent
   ]
 })
 export class CeditorModule {
