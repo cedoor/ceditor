@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core'
 import {UtilsService} from '../utils/utils.service'
 import {ConsoleService} from '../console/console.service'
+import * as ace from 'brace'
+import 'brace/mode/typescript'
+import 'brace/theme/monokai'
 
-declare const ace: any
 declare const ts: any
 
 @Injectable({
@@ -17,11 +19,13 @@ export class EditorService {
   }
 
   public createEditor (htmlElement: HTMLElement) {
-    this.editor = ace.edit(htmlElement, {
-      mode: 'editor/mode/typescript',
-      selectionStyle: 'text',
-      theme: 'editor/theme/monokai',
-      fontSize: 18
+    this.editor = ace.edit(htmlElement)
+
+    this.editor.setOptions({
+        mode: 'ace/mode/typescript',
+        selectionStyle: 'text',
+        theme: 'ace/theme/monokai',
+        fontSize: 18
     })
   }
 

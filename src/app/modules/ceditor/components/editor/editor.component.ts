@@ -17,7 +17,7 @@ export class EditorComponent implements OnInit {
                private httpService: HttpService) {
   }
 
-  async ngOnInit (): Promise<void> {
+  public async ngOnInit (): Promise<void> {
     this.editorService.createEditor(this.editorReference.nativeElement)
 
     this.editorService.setCode(localStorage.getItem('code') || await this.httpService.getCode())
