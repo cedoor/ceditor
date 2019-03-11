@@ -8,7 +8,7 @@ declare const ts: any
 @Injectable({
   providedIn: 'root'
 })
-export class AceService {
+export class EditorService {
 
   private editor: any
 
@@ -18,9 +18,9 @@ export class AceService {
 
   public createEditor (htmlElement: HTMLElement) {
     this.editor = ace.edit(htmlElement, {
-      mode: 'ace/mode/typescript',
+      mode: 'editor/mode/typescript',
       selectionStyle: 'text',
-      theme: 'ace/theme/monokai',
+      theme: 'editor/theme/monokai',
       fontSize: 18
     })
   }

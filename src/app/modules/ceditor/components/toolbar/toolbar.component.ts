@@ -1,5 +1,5 @@
 import {Component} from '@angular/core'
-import {AceService} from '../../../../core/services/ace/ace.service'
+import {EditorService} from '../../../../core/services/editor/editor.service'
 import {ConsoleService} from '../../../../core/services/console/console.service'
 
 @Component({
@@ -9,12 +9,12 @@ import {ConsoleService} from '../../../../core/services/console/console.service'
 })
 export class ToolbarComponent {
 
-  constructor (private aceService: AceService,
+  constructor (private editorService: EditorService,
                private consoleService: ConsoleService) {
   }
 
   public runCode () {
-    this.aceService.run()
+    this.editorService.run()
   }
 
   public clearConsole () {

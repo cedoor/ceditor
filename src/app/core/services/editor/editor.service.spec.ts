@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing'
 
-import {AceService} from './ace.service'
+import {EditorService} from './editor.service'
 
-describe('AceService', () => {
+describe('EditorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}))
 
   it('should be created', () => {
-    const service: AceService = TestBed.get(AceService)
+    const service: EditorService = TestBed.get(EditorService)
     expect(service).toBeTruthy()
   })
 })
