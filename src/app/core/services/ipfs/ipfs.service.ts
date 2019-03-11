@@ -23,15 +23,15 @@ export class IpfsService {
   /**
    * Returns a file addressed by a valid IPFS Path.
    */
-  public async cat (ipfsPath) {
+  public async cat (ipfsPath): Promise<string> {
     return (await this.ipfs.cat(ipfsPath)).toString('utf8')
   }
 
   /**
-   * Add a file to IPFS network.
+   * Add a content to IPFS network and return the correspondent IPFS path.
    */
-  public async add (file) {
-    return this.ipfs.add(Buffer.from(file))
+  public async add (content: any): Promise<string> {
+    return (await this.ipfs.add(Buffer.from(content)))[0].path
   }
 
 }
