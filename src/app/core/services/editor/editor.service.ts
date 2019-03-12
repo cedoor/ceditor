@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core'
-import {UtilsService} from '../utils/utils.service'
 import {ConsoleService} from '../console/console.service'
 import * as ace from 'brace'
 import 'brace/mode/typescript'
 import 'brace/theme/monokai'
+import 'brace/ext/language_tools'
 
 declare const ts: any
 
@@ -14,18 +14,18 @@ export class EditorService {
 
   private editor: any
 
-  constructor (private utilsService: UtilsService,
-               private consoleService: ConsoleService) {
+  constructor (private consoleService: ConsoleService) {
   }
 
   public createEditor (htmlElement: HTMLElement) {
     this.editor = ace.edit(htmlElement)
 
     this.editor.setOptions({
-        mode: 'ace/mode/typescript',
-        selectionStyle: 'text',
-        theme: 'ace/theme/monokai',
-        fontSize: 18
+      mode: 'ace/mode/typescript',
+      selectionStyle: 'text',
+      enableBasicAutocompletion: true,
+      theme: 'ace/theme/monokai',
+      fontSize: 18
     })
   }
 
@@ -46,11 +46,36 @@ export class EditorService {
   }
 
   public async run () {
-    const getHTML = this.utilsService.getHTML.bind(this.utilsService)
-    const library = this.utilsService.library.bind(this.utilsService)
+    const script = this.script.bind(this)
     const log = this.consoleService.log.bind(this.consoleService)
 
-    await eval(ts.transpile(`(async () => { ${this.editor.getValue()}})()`))
+    await eval(ts.transpile(this.editor.getValue()))
+  }
+
+  private script (url: string): Promise<any> {
+    this.removeOldScript(url)
+
+    return new Promise(function (resolve, reject) {
+      const head = document.getElementsByTagName('head')[0]
+      const script = document.createElement('script')
+
+      script.className = 'ceditor-script'
+      script.type = 'text/javascript'
+      script.src = url
+
+      script.onload = resolve
+      script.onerror = reject
+
+      head.appendChild(script)
+    })
+  }
+
+  private removeOldScript (url: string) {
+    document.querySelectorAll('.ceditor-script').forEach(function deleteScript (script) {
+      if (script.getAttribute('src') === url) {
+        script.parentNode.removeChild(script)
+      }
+    })
   }
 
 }
