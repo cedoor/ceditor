@@ -53,29 +53,33 @@ export class EditorService {
   }
 
   private script (url: string): Promise<any> {
-    this.removeOldScript(url)
+    return new Promise((resolve, reject) => {
+      if (this.scriptAlreadyExist(url)) {
+        resolve()
+      } else {
+        const head = document.getElementsByTagName('head')[0]
+        const script = document.createElement('script')
 
-    return new Promise(function (resolve, reject) {
-      const head = document.getElementsByTagName('head')[0]
-      const script = document.createElement('script')
+        script.className = 'ceditor-script'
+        script.type = 'text/javascript'
+        script.src = url
 
-      script.className = 'ceditor-script'
-      script.type = 'text/javascript'
-      script.src = url
+        script.onload = resolve
+        script.onerror = reject
 
-      script.onload = resolve
-      script.onerror = reject
-
-      head.appendChild(script)
+        head.appendChild(script)
+      }
     })
   }
 
-  private removeOldScript (url: string) {
-    document.querySelectorAll('.ceditor-script').forEach(function deleteScript (script) {
+  private scriptAlreadyExist (url: string): boolean {
+    for (const script of Array.from(document.querySelectorAll('.ceditor-script'))) {
       if (script.getAttribute('src') === url) {
-        script.parentNode.removeChild(script)
+        return true
       }
-    })
+    }
+
+    return false
   }
 
 }
