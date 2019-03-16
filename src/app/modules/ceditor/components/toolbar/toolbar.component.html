@@ -1,5 +1,6 @@
 <div id="app-toolbar">
   <mat-toolbar>
+    <img class="logo" src="./assets/icon.png">
     <span class="title">Ceditor</span>
     <button mat-icon-button
             (click)="runCode()"
@@ -16,5 +17,9 @@
             matTooltip="Clear the console (Ctrl + l)">
       <mat-icon aria-label="">clear</mat-icon>
     </button>
+    <span class="spacer"></span>
+    <a href="https://github.com/cedoor/ceditor" target="_blank">
+      <i class="fab fa-github"></i>
+    </a>
   </mat-toolbar>
 </div>
