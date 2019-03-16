@@ -1,3 +1,9 @@
+# <img src="https://github.com/cedoor/ceditor/blob/master/resources/icon.png" alt="icon" width="40"/> Ceditor<sup>beta</sup>
+
+[![](https://img.shields.io/github/license/cedoor/ceditor.svg?style=flat-square)](https://github.com/cedoor/ceditor/blob/master/LICENSE)
+[![](https://david-dm.org/cedoor/ceditor.svg)](https://david-dm.org/cedoor/ceditor)
+[![](https://david-dm.org/cedoor/ceditor.svg)](https://david-dm.org/cedoor/ceditor)
+
 # Ceditor
 
 Simple static page to write JS code.
