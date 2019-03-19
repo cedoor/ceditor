@@ -1,7 +1,7 @@
 {
   "name": "ceditor",
   "description": "Simple static page to write JS code.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
