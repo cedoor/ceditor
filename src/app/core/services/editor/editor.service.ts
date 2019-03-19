@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core'
-import {ConsoleService} from '../console/console.service'
 import * as ace from 'brace'
 import 'brace/mode/typescript'
 import 'brace/theme/monokai'
 import 'brace/ext/language_tools'
+import 'brace/ext/searchbox'
 
 declare const ts: any
 
@@ -14,7 +14,7 @@ export class EditorService {
 
   private editor: any
 
-  constructor (private consoleService: ConsoleService) {
+  constructor () {
   }
 
   public createEditor (htmlElement: HTMLElement) {
@@ -24,6 +24,8 @@ export class EditorService {
       mode: 'ace/mode/typescript',
       selectionStyle: 'text',
       enableBasicAutocompletion: true,
+      autoScrollEditorIntoView: true,
+      enableMultiselect: true,
       theme: 'ace/theme/monokai',
       fontSize: 18
     })
@@ -47,7 +49,6 @@ export class EditorService {
 
   public async run () {
     const script = this.script.bind(this)
-    const log = this.consoleService.log.bind(this.consoleService)
 
     await eval(ts.transpile(this.editor.getValue()))
   }

@@ -1,7 +1,6 @@
-import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core'
+import {AfterContentInit, Component, ElementRef, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {HttpService} from '../../../../core/http/http.service'
-import {ConsoleService} from '../../../../core/services/console/console.service'
 import {ActivatedRoute} from '@angular/router'
 import {IpfsService} from '../../../../core/services/ipfs/ipfs.service'
 import {InformationService} from '../../../../core/services/information/information.service'
@@ -16,7 +15,6 @@ export class EditorComponent implements AfterContentInit {
   @ViewChild('editor') public editorReference: ElementRef
 
   constructor (private editorService: EditorService,
-               private loggerService: ConsoleService,
                private route: ActivatedRoute,
                private informationService: InformationService,
                private ipfsService: IpfsService,
@@ -28,10 +26,6 @@ export class EditorComponent implements AfterContentInit {
 
     this.editorService.addCommand('run-code', {mac: 'cmd-Enter', win: 'ctrl-Enter'}, () => {
       this.editorService.run()
-    })
-
-    this.editorService.addCommand('clear-console', {mac: 'cmd-l', win: 'ctrl-l'}, () => {
-      this.loggerService.clear()
     })
 
     await this.setCode()

@@ -1,6 +1,5 @@
 import {Component} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {ConsoleService} from '../../../../core/services/console/console.service'
 import {IpfsService} from '../../../../core/services/ipfs/ipfs.service'
 import {InformationService} from '../../../../core/services/information/information.service'
 
@@ -13,16 +12,11 @@ export class ToolbarComponent {
 
   constructor (private editorService: EditorService,
                private informationService: InformationService,
-               private consoleService: ConsoleService,
                private ipfsService: IpfsService) {
   }
 
   public runCode () {
     this.editorService.run()
-  }
-
-  public clearConsole () {
-    this.consoleService.clear()
   }
 
   public async shareCode () {
