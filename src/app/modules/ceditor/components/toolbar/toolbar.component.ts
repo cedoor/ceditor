@@ -1,6 +1,5 @@
 import {Component} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {IpfsService} from '../../../../core/services/ipfs/ipfs.service'
 import {InformationService} from '../../../../core/services/information/information.service'
 
 @Component({
@@ -11,8 +10,7 @@ import {InformationService} from '../../../../core/services/information/informat
 export class ToolbarComponent {
 
   constructor (private editorService: EditorService,
-               private informationService: InformationService,
-               private ipfsService: IpfsService) {
+               private informationService: InformationService) {
   }
 
   public runCode () {
@@ -20,12 +18,7 @@ export class ToolbarComponent {
   }
 
   public async shareCode () {
-    this.informationService.log('Creating the code key...')
-
-    const code = this.editorService.getCode()
-    const ipfsPath = await this.ipfsService.add(code)
-
-    this.informationService.log(`Click&nbsp;<a href="./${ipfsPath}" target="_blank">here</a>&nbsp;to open the correct link!`, 10000)
+    this.informationService.log('To do...', 2000)
   }
 
 }
