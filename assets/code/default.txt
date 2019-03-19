@@ -1,4 +1,5 @@
-(async () => {
-  // Examples:
-  // Web scraping client-side: Qmf8v4JpDbWKwmAog9jhxkCjSJrReZYkhuaSuuRpiYnowy
+(async ()=> {
+	const input = prompt('Hello world!')
+
+	console.log(input)
 })()
