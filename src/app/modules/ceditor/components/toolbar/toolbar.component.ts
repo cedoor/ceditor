@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {InformationService} from '../../../../core/services/information/information.service'
+import {UtilsService} from '../../../../core/services/information/utils.service'
 
 @Component({
   selector: 'app-toolbar',
@@ -10,7 +10,7 @@ import {InformationService} from '../../../../core/services/information/informat
 export class ToolbarComponent {
 
   constructor (private editorService: EditorService,
-               private informationService: InformationService) {
+               private utilsService: UtilsService) {
   }
 
   public runCode () {
@@ -18,7 +18,7 @@ export class ToolbarComponent {
   }
 
   public async shareCode () {
-    this.informationService.log('To do...', 2000)
+    this.utilsService.showMessage('To do...', 2000)
   }
 
 }

@@ -1,7 +1,7 @@
 import {AfterContentInit, Component, ElementRef, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {HttpService} from '../../../../core/http/http.service'
-import {InformationService} from '../../../../core/services/information/information.service'
+import {UtilsService} from '../../../../core/services/information/utils.service'
 
 @Component({
   selector: 'app-editor',
@@ -14,7 +14,7 @@ export class EditorComponent implements AfterContentInit {
 
   constructor (private editorService: EditorService,
                // private route: ActivatedRoute,
-               private informationService: InformationService,
+               private informationService: UtilsService,
                private httpService: HttpService) {
   }
 
