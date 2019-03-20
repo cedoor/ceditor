@@ -2,6 +2,8 @@ import {AfterContentInit, Component, ElementRef, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {HttpService} from '../../../../core/http/http.service'
 import {UtilsService} from '../../../../core/services/information/utils.service'
+import {ActivatedRoute} from '@angular/router'
+import {GithubService} from '../../../../core/http/github/github.service'
 
 @Component({
   selector: 'app-editor',
@@ -13,7 +15,8 @@ export class EditorComponent implements AfterContentInit {
   @ViewChild('editor') public editorReference: ElementRef
 
   constructor (private editorService: EditorService,
-               // private route: ActivatedRoute,
+               private githubService: GithubService,
+               private route: ActivatedRoute,
                private informationService: UtilsService,
                private httpService: HttpService) {
   }
@@ -33,9 +36,25 @@ export class EditorComponent implements AfterContentInit {
   }
 
   private async setCode () {
-    // const key = this.route.snapshot.paramMap.get('key')
+    const gistId = this.route.snapshot.paramMap.get('gist_id')
+    let code =
+      localStorage.getItem('code')
+      || await this.httpService.get('./assets/code/default.txt', {
+        responseType: 'text'
+      })
 
-    this.editorService.setCode(localStorage.getItem('code') || await this.httpService.getCode())
+    if (gistId) {
+      try {
+        const gist = await this.githubService.getGist(gistId)
+
+        // @ts-ignore
+        code = Object.values(gist.files)[0].content
+      } catch (error) {
+        this.editorService.setCode(code)
+      }
+    }
+
+    this.editorService.setCode(code)
   }
 
 }

@@ -8,7 +8,7 @@ const routes: Routes = [
     component: CeditorComponent
   },
   {
-    path: ':key',
+    path: ':gist_id',
     component: CeditorComponent
   },
   { path: '**', component: CeditorComponent}
