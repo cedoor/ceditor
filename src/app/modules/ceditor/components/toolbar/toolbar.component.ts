@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {UtilsService} from '../../../../core/services/information/utils.service'
+import {UtilsService} from '../../../../core/services/utils/utils.service'
 
 @Component({
   selector: 'app-toolbar',

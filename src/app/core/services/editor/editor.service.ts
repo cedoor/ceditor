@@ -4,6 +4,7 @@ import 'brace/mode/typescript'
 import 'brace/theme/monokai'
 import 'brace/ext/language_tools'
 import 'brace/ext/searchbox'
+import {GithubService} from '../../http/github/github.service'
 
 declare const ts: any
 
@@ -14,7 +15,7 @@ export class EditorService {
 
   private editor: any
 
-  constructor () {
+  constructor (private githubService: GithubService) {
   }
 
   public createEditor (htmlElement: HTMLElement) {
@@ -49,8 +50,17 @@ export class EditorService {
 
   public async run () {
     const script = this.script.bind(this)
+    const gist = this.gist.bind(this)
 
     await eval(ts.transpile(this.editor.getValue()))
+  }
+
+  private async gist (gistId: string) {
+    const gist = await this.githubService.getGist(gistId)
+    // @ts-ignore
+    const code = Object.values(gist.files)[0].content
+
+    return eval(ts.transpile(code))
   }
 
   private script (url: string): Promise<any> {

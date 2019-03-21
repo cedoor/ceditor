@@ -1,7 +1,7 @@
 import {AfterContentInit, Component, ElementRef, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {HttpService} from '../../../../core/http/http.service'
-import {UtilsService} from '../../../../core/services/information/utils.service'
+import {UtilsService} from '../../../../core/services/utils/utils.service'
 import {ActivatedRoute} from '@angular/router'
 import {GithubService} from '../../../../core/http/github/github.service'
 
@@ -17,7 +17,7 @@ export class EditorComponent implements AfterContentInit {
   constructor (private editorService: EditorService,
                private githubService: GithubService,
                private route: ActivatedRoute,
-               private informationService: UtilsService,
+               private utilsService: UtilsService,
                private httpService: HttpService) {
   }
 
