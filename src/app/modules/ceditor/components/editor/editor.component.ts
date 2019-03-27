@@ -1,6 +1,5 @@
-import {AfterContentInit, Component, ElementRef, ViewChild} from '@angular/core'
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {HttpService} from '../../../../core/http/http.service'
 import {UtilsService} from '../../../../core/services/utils/utils.service'
 import {ActivatedRoute} from '@angular/router'
 import {GithubService} from '../../../../core/http/github/github.service'
@@ -10,51 +9,83 @@ import {GithubService} from '../../../../core/http/github/github.service'
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements AfterContentInit {
+export class EditorComponent implements OnInit {
 
   @ViewChild('editor') public editorReference: ElementRef
 
   constructor (private editorService: EditorService,
                private githubService: GithubService,
                private route: ActivatedRoute,
-               private utilsService: UtilsService,
-               private httpService: HttpService) {
+               private utilsService: UtilsService) {
+    this.utilsService.showProgressSpinner()
   }
 
-  public async ngAfterContentInit (): Promise<void> {
+  /**
+   * Create the editor with commands and code after
+   * the component initialization.
+   */
+  public async ngOnInit (): Promise<void> {
+    // Create the editor.
     this.editorService.createEditor(this.editorReference.nativeElement)
 
-    this.editorService.addCommand('run-code', {mac: 'cmd-Enter', win: 'ctrl-Enter'}, () => {
-      this.editorService.run()
-    })
+    // Add all commands of the editor.
+    this.editorService.addCommands([{
+      name: 'run-code',
+      exec: () => {
+        this.editorService.run()
+      },
+      bindKey: {mac: 'cmd-Enter', win: 'ctrl-Enter'}
+    }, {
+      name: 'share-code',
+      exec: () => {
+        this.utilsService.showMessage('To do...', 2000)
+      },
+      bindKey: 'alt-S'
+    }])
 
+    // Set the code of the editor.
     await this.setCode()
 
+    // Save the code on keyup event.
     this.editorReference.nativeElement.onkeyup = () => {
       localStorage.setItem('code', this.editorService.getCode())
     }
   }
 
+  /**
+   * Set the code of the editor.
+   */
   private async setCode () {
     const gistId = this.route.snapshot.paramMap.get('gist_id')
-    let code =
-      localStorage.getItem('code')
-      || await this.httpService.get('./assets/code/default.txt', {
-        responseType: 'text'
-      })
-
-    if (gistId) {
-      try {
-        const gist = await this.githubService.getGist(gistId)
-
-        // @ts-ignore
-        code = Object.values(gist.files)[0].content
-      } catch (error) {
-        this.editorService.setCode(code)
-      }
-    }
+    const code =
+      await this.getGistCode(gistId) ||
+      localStorage.getItem('code') ||
+      await this.getDefaultCode()
 
     this.editorService.setCode(code)
+    this.utilsService.hideProgressSpinner()
+  }
+
+  /**
+   * Return the default gist code to show.
+   * https://gist.github.com/cedoor/6490a8bcea24c3a58e5a7233dd5f72e1
+   */
+  private async getDefaultCode () {
+    return await this.getGistCode('6490a8bcea24c3a58e5a7233dd5f72e1')
+  }
+
+  /**
+   * Return the code of the gist with the id passed as parameter.
+   */
+  private async getGistCode (gistId: string): Promise<string> {
+    try {
+      const gist = await this.githubService.getGist(gistId)
+
+      // @ts-ignore
+      return Object.values(gist.files)[0].content
+    } catch (error) {
+      return null
+    }
   }
 
 }

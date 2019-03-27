@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core'
 import * as ace from 'brace'
+import {EditorCommand} from 'brace'
 import 'brace/mode/typescript'
 import 'brace/theme/monokai'
 import 'brace/ext/language_tools'
@@ -40,12 +41,8 @@ export class EditorService {
     return this.editor.getValue()
   }
 
-  public addCommand (name: string, keys: any, callback: () => void) {
-    this.editor.commands.addCommand({
-      name,
-      exec: callback.bind(this),
-      bindKey: keys
-    })
+  public addCommands (commands: EditorCommand[]) {
+    this.editor.commands.addCommands(commands)
   }
 
   public async run () {

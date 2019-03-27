@@ -8,3 +8,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.progress-spinner-dialog {
+  .mat-dialog-container {
+    box-shadow: inherit;
+    background-color: inherit;
+  }
+}
