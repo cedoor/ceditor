@@ -1,5 +1,0 @@
-(async ()=> {
-	const input = prompt('Hello world!')
-
-	console.log(input)
-})()
