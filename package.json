@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "publish": "ng build --prod --base-href \"/ceditor/\" && ngh --dir=dist/ceditor"
+    "publish": "ng build --prod && ngh --dir=dist/ceditor"
   },
   "private": true,
   "dependencies": {
