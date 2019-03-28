@@ -59,8 +59,9 @@ export class EditorComponent implements OnInit {
    */
   private async setCode () {
     const gistId = this.route.snapshot.paramMap.get('gist_id')
+    const fileName = this.route.snapshot.paramMap.get('file_name')
     const code =
-      await this.getGistCode(gistId) ||
+      await this.getGistCode(gistId, fileName) ||
       this.storageService.get(STORAGE_KEY.CODE) ||
       await this.getDefaultCode()
 
@@ -73,19 +74,23 @@ export class EditorComponent implements OnInit {
    * https://gist.github.com/cedoor/6490a8bcea24c3a58e5a7233dd5f72e1
    */
   private async getDefaultCode () {
-    return await this.getGistCode('6490a8bcea24c3a58e5a7233dd5f72e1')
+    return await this.getGistCode('6490a8bcea24c3a58e5a7233dd5f72e1', 'default.ts')
   }
 
   /**
    * Return the code of the gist with the id passed as parameter.
    */
-  private async getGistCode (gistId: string): Promise<string> {
+  private async getGistCode (gistId: string, fileName?: string): Promise<string> {
     if (gistId && typeof gistId === 'string') {
       try {
         const gist = await this.githubService.getGist(gistId)
 
-        // @ts-ignore
-        return Object.values(gist.files)[0].content
+        if (fileName && typeof fileName === 'string' && gist.files[fileName]) {
+          return gist.files[fileName].content
+        } else {
+          // @ts-ignore
+          return Object.values(gist.files)[0].content
+        }
       } catch (error) {
         return null
       }
