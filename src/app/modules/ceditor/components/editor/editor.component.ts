@@ -3,6 +3,7 @@ import {EditorService} from '../../../../core/services/editor/editor.service'
 import {UtilsService} from '../../../../core/services/utils/utils.service'
 import {ActivatedRoute} from '@angular/router'
 import {GithubService} from '../../../../core/http/github/github.service'
+import {STORAGE_KEY, StorageService} from '../../../../core/services/storage/storage.service'
 
 @Component({
   selector: 'app-editor',
@@ -15,6 +16,7 @@ export class EditorComponent implements OnInit {
 
   constructor (private editorService: EditorService,
                private githubService: GithubService,
+               private storageService: StorageService,
                private route: ActivatedRoute,
                private utilsService: UtilsService) {
     this.utilsService.showProgressSpinner()
@@ -48,7 +50,7 @@ export class EditorComponent implements OnInit {
 
     // Save the code on keyup event.
     this.editorReference.nativeElement.onkeyup = () => {
-      localStorage.setItem('code', this.editorService.getCode())
+      this.storageService.set(STORAGE_KEY.CODE, this.editorService.getCode())
     }
   }
 
@@ -59,7 +61,7 @@ export class EditorComponent implements OnInit {
     const gistId = this.route.snapshot.paramMap.get('gist_id')
     const code =
       await this.getGistCode(gistId) ||
-      localStorage.getItem('code') ||
+      this.storageService.get(STORAGE_KEY.CODE) ||
       await this.getDefaultCode()
 
     this.editorService.setCode(code)
