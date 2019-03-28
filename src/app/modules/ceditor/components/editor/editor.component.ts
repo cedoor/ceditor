@@ -80,12 +80,16 @@ export class EditorComponent implements OnInit {
    * Return the code of the gist with the id passed as parameter.
    */
   private async getGistCode (gistId: string): Promise<string> {
-    try {
-      const gist = await this.githubService.getGist(gistId)
+    if (gistId && typeof gistId === 'string') {
+      try {
+        const gist = await this.githubService.getGist(gistId)
 
-      // @ts-ignore
-      return Object.values(gist.files)[0].content
-    } catch (error) {
+        // @ts-ignore
+        return Object.values(gist.files)[0].content
+      } catch (error) {
+        return null
+      }
+    } else {
       return null
     }
   }
