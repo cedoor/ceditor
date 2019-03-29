@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core'
 import {SharedModule} from '../../shared/shared.module'
 import {ToolbarComponent} from './components/toolbar/toolbar.component'
 import {EditorComponent} from './components/editor/editor.component'
-import {MatDividerModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material'
+import {MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material'
 import {CeditorComponent} from './ceditor.component'
 import {SidenavComponent} from './components/sidenav/sidenav.component'
 
@@ -11,8 +11,7 @@ import {SidenavComponent} from './components/sidenav/sidenav.component'
     SharedModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule,
-    MatDividerModule
+    MatListModule
   ],
   declarations: [
     CeditorComponent,

@@ -1,33 +1,47 @@
 <div id="app-sidenav">
-  <div class="sidenav-sub-header">
-    Gist details
+  <div *ngIf="gist">
+    <div class="sidenav-sub-header">
+      Gist details
+    </div>
+
+    <mat-list>
+      <mat-list-item>
+        <mat-icon matListIcon>code</mat-icon>
+        <h4 mat-line>
+          <a [href]="gist?.html_url" target="_blank">Gist URL</a>
+        </h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>person</mat-icon>
+        <h4 mat-line>
+          Owner: <a [href]="gist?.owner.html_url" target="_blank">{{ gist?.owner.login }}</a>
+        </h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>loop</mat-icon>
+        <h4 mat-line>Revisions: {{ gist?.history.length }}</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>date_range</mat-icon>
+        <h4 mat-line>Created:</h4>
+        <p mat-line>{{ gist?.created_at | date:'MM/d/y HH:mm' }}</p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>update</mat-icon>
+        <h4 mat-line>Updated:</h4>
+        <p mat-line>{{ gist?.updated_at | date:'MM/d/y HH:mm' }}</p>
+      </mat-list-item>
+    </mat-list>
+
+    <div class="sidenav-sub-header">
+      Gist files
+    </div>
+    <mat-action-list>
+      <button *ngFor="let gistFile of gistFiles"
+              [ngClass]="{ 'selected' : currentGistFile.filename === gistFile.filename }"
+              (click)="setGistFile(gistFile)" mat-list-item>
+        <span>{{ gistFile.filename }}</span>
+      </button>
+    </mat-action-list>
   </div>
-
-  <div class="gist-description">
-    {{ gist?.description }}
-  </div>
-
-  <mat-divider></mat-divider>
-
-  <mat-list>
-    <mat-list-item>
-      <h4 mat-line>Created:</h4>
-      <p mat-line>{{ gist?.created_at | date:'medium' }}</p>
-    </mat-list-item>
-    <mat-list-item>
-      <h4 mat-line>Updated:</h4>
-      <p mat-line>{{ gist?.updated_at | date:'medium' }}</p>
-    </mat-list-item>
-  </mat-list>
-
-  <div class="sidenav-sub-header">
-    Gist files
-  </div>
-  <mat-action-list>
-    <button *ngFor="let gistFile of gistFiles"
-            [ngClass]="{ 'selected' : currentGistFile.filename === gistFile.filename }"
-            (click)="setGistFile(gistFile)" mat-list-item>
-      <span>{{ gistFile.filename }}</span>
-    </button>
-  </mat-action-list>
 </div>

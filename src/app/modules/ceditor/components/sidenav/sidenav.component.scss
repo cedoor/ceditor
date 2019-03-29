@@ -1,9 +1,8 @@
 div#app-sidenav {
-  width: 240px;
+  width: 220px;
   padding: 0 10px;
 
-  div.sidenav-sub-header, button,
-  mat-list-item, div.gist-description {
+  div.sidenav-sub-header, button, mat-list-item {
     font-family: "Courier New", Courier, monospace;
   }
 
@@ -11,16 +10,6 @@ div#app-sidenav {
     font-size: 16px;
     padding: 20px 0 10px 8px;
     border-bottom: 1px solid #aaaaaa;
-  }
-
-  div.gist-description {
-    padding: 16px;
-    font-style: italic;
-    color: #575757;
-  }
-
-  div.gist-description, button {
-    font-size: 14px;
   }
 
   p.mat-line {
@@ -32,6 +21,7 @@ div#app-sidenav {
 
     button, mat-list-item {
       border-bottom: 1px solid lightgray;
+      font-size: 14px;
 
       span {
         text-overflow: ellipsis !important;
