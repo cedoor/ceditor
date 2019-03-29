@@ -1,0 +1,11 @@
+<div id="app-sidenav">
+  <mat-action-list>
+    <div class="list-header">Gist files</div>
+    <mat-divider></mat-divider>
+    <button *ngFor="let gistFile of gistFiles"
+            (click)="setCode(gistFile)"
+            mat-list-item>
+      {{ gistFile.filename }}
+    </button>
+  </mat-action-list>
+</div>

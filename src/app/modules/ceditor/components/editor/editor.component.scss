@@ -1,4 +1,5 @@
 div#app-editor {
-  width: 100%;
-  height: 100%;
+  height: calc(100% - 15px);
+
+  border-top: 15px solid #2F3129;
 }

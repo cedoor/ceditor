@@ -3,6 +3,10 @@
     <img class="logo" src="./assets/icon.png">
     <span class="title">Ceditor</span>
     <button mat-icon-button
+            (click)="toggleSidenav()">
+      <mat-icon aria-label="">menu</mat-icon>
+    </button>
+    <button mat-icon-button
             (click)="runCode()"
             matTooltip="Run the code (Ctrl + Enter)">
       <mat-icon aria-label="">play_arrow</mat-icon>

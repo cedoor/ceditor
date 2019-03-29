@@ -1,17 +1,20 @@
 div#app-ceditor {
-  width: 100%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
 
   app-toolbar {
-    flex-basis: 60px;
-    display: flex;
+    flex-basis: 50px;
   }
 
-  app-editor {
+  mat-sidenav-container {
     flex: 1;
+
+    mat-sidenav {
+      background-color: whitesmoke;
+      border-top: 1px solid #aaaaaa;
+    }
   }
 
 }

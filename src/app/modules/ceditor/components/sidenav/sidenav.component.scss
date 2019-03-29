@@ -1,0 +1,18 @@
+div#app-sidenav {
+  width: 200px;
+
+  div.list-header, button {
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  div.list-header {
+    font-size: 16px;
+    padding: 10px 16px;
+  }
+
+  button {
+    font-size: 15px;
+  }
+
+  padding: 10px 5px;
+}

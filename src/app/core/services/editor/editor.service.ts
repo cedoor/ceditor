@@ -6,6 +6,7 @@ import 'brace/theme/monokai'
 import 'brace/ext/language_tools'
 import 'brace/ext/searchbox'
 import {GithubService} from '../../http/github/github.service'
+import {Editor} from 'brace'
 
 declare const ts: any
 
@@ -14,7 +15,7 @@ declare const ts: any
 })
 export class EditorService {
 
-  private editor: any
+  private editor: Editor
 
   constructor (private githubService: GithubService) {
   }
@@ -34,7 +35,7 @@ export class EditorService {
   }
 
   public setCode (code: string) {
-    this.editor.setValue(code, 1)
+    this.editor.setValue(code, -1)
   }
 
   public getCode (): string {

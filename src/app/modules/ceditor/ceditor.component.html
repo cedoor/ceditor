@@ -1,4 +1,11 @@
 <div id="app-ceditor">
   <app-toolbar></app-toolbar>
-  <app-editor></app-editor>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened>
+      <app-sidenav [gist]="gist"></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-editor [gist]="gist"></app-editor>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

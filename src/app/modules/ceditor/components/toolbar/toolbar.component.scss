@@ -1,10 +1,9 @@
 div#app-toolbar {
   flex: 1;
-  border-bottom: 15px solid #2F3129;
   background-color: whitesmoke;
 
   mat-toolbar {
-    height: 45px;
+    height: 50px;
 
     .logo {
       width: 30px;
@@ -17,7 +16,7 @@ div#app-toolbar {
       height: 100%;
       font-family: "Courier New", Courier, monospace;
       padding-right: 16px;
-      border-right: 1px solid lightgray;
+      border-right: 1px solid #aaaaaa;
     }
 
     .spacer {
