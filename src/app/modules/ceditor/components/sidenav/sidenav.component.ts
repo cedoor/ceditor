@@ -9,9 +9,9 @@ import {Location} from '@angular/common'
 })
 export class SidenavComponent implements OnInit {
 
-  @Input('gist') public gist: Promise<any>
+  @Input('gistPromise') public gistPromise: Promise<any>
 
-  public gistId: string
+  public gist: any
   public gistFiles: any[]
 
   constructor (private editorService: EditorService,
@@ -19,15 +19,14 @@ export class SidenavComponent implements OnInit {
   }
 
   public async ngOnInit () {
-    const gist = await this.gist
+    this.gist = await this.gistPromise
 
-    this.gistId = gist.id
-    this.gistFiles = Object.values(gist.files)
+    this.gistFiles = Object.values(this.gist.files)
   }
 
   public setCode (gistFile: any) {
     this.editorService.setCode(gistFile.content)
-    this.location.replaceState(`/${this.gistId}/${gistFile.filename}`)
+    this.location.replaceState(`/${this.gist.id}/${gistFile.filename}`)
   }
 
 }

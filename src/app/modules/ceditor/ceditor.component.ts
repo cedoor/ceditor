@@ -14,38 +14,39 @@ export class CeditorComponent implements OnInit {
 
   @ViewChild('sidenav') public sidenav: MatSidenav
 
-  public gist: Promise<any>
+  public gistPromise: Promise<any>
 
   constructor (private sidenavService: SidenavService,
                private githubService: GithubService,
                private route: ActivatedRoute,
                private utilsService: UtilsService) {
-    this.setGist()
+    this.init()
   }
 
   public ngOnInit () {
     this.sidenavService.init(this.sidenav)
   }
 
-  private async setGist () {
+  private async init () {
     this.utilsService.showProgressSpinner()
 
+    await (this.gistPromise = this.getGistPromise())
+
+    this.utilsService.hideProgressSpinner()
+  }
+
+  private async getGistPromise (): Promise<any> {
     const gistId = this.route.snapshot.paramMap.get('gist_id')
 
     if (gistId && typeof gistId === 'string') {
       try {
-        this.gist = this.githubService.getGist(gistId)
-
+        return await this.githubService.getGist(gistId)
       } catch (error) {
-        this.gist = this.getDefaultGist()
+        return this.getDefaultGist()
       }
     } else {
-      this.gist = this.getDefaultGist()
+      return this.getDefaultGist()
     }
-
-    await this.gist
-
-    this.utilsService.hideProgressSpinner()
   }
 
   private getDefaultGist (): Promise<any> {

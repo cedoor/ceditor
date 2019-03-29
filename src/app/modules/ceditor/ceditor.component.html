@@ -2,10 +2,10 @@
   <app-toolbar></app-toolbar>
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" opened>
-      <app-sidenav [gist]="gist"></app-sidenav>
+      <app-sidenav [gistPromise]="gistPromise"></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
-      <app-editor [gist]="gist"></app-editor>
+      <app-editor [gistPromise]="gistPromise"></app-editor>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

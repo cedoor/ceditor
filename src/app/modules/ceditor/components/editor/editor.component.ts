@@ -12,7 +12,7 @@ export class EditorComponent implements OnInit {
 
   @ViewChild('editor') public editorReference: ElementRef
 
-  @Input('gist') public gist: Promise<any>
+  @Input('gistPromise') public gistPromise: Promise<any>
 
   constructor (private editorService: EditorService,
                private route: ActivatedRoute,
@@ -56,7 +56,7 @@ export class EditorComponent implements OnInit {
    */
   private async setCode () {
     const fileName = this.route.snapshot.paramMap.get('file_name')
-    const gist = await this.gist
+    const gist = await this.gistPromise
 
     if (fileName && typeof fileName === 'string' && gist.files[fileName]) {
       this.editorService.setCode(gist.files[fileName].content)
