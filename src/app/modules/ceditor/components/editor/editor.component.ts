@@ -1,7 +1,8 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core'
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {UtilsService} from '../../../../core/services/utils/utils.service'
-import {ActivatedRoute} from '@angular/router'
+import {StorageService} from '../../../../core/services/storage/storage.service'
+import {GistService} from '../../../../core/services/gist/gist.service'
 
 @Component({
   selector: 'app-editor',
@@ -12,10 +13,11 @@ export class EditorComponent implements OnInit {
 
   @ViewChild('editor') public editorReference: ElementRef
 
-  @Input('gistPromise') public gistPromise: Promise<any>
+  public gist: any
 
   constructor (private editorService: EditorService,
-               private route: ActivatedRoute,
+               private gistService: GistService,
+               private storageService: StorageService,
                private utilsService: UtilsService) {
   }
 
@@ -46,24 +48,22 @@ export class EditorComponent implements OnInit {
     this.setCode()
 
     // Save the code on keyup event.
-    // this.editorReference.nativeElement.onkeyup = () => {
-    // this.storageService.set(STORAGE_KEY.CODE, this.editorService.getCode())
-    // }
+    this.editorReference.nativeElement.onkeyup = () => {
+      const file = this.gistService.getFile()
+      const code = this.editorService.getCode()
+
+      this.storageService.set(`${this.gist.id}/${file.filename}`, code)
+    }
   }
 
   /**
    * Set the code of the editor.
    */
   private async setCode () {
-    const fileName = this.route.snapshot.paramMap.get('file_name')
-    const gist = await this.gistPromise
+    this.gist = await this.gistService.onInit()
+    const file = this.gistService.getFile()
 
-    if (fileName && typeof fileName === 'string' && gist.files[fileName]) {
-      this.editorService.setCode(gist.files[fileName].content)
-    } else {
-      // @ts-ignore
-      this.editorService.setCode(Object.values(gist.files)[0].content)
-    }
+    this.editorService.setCode(file.content)
   }
 
 }

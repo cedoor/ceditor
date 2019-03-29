@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {Location} from '@angular/common'
+import {GistService} from '../../../../core/services/gist/gist.service'
 
 @Component({
   selector: 'app-sidenav',
@@ -9,17 +10,16 @@ import {Location} from '@angular/common'
 })
 export class SidenavComponent implements OnInit {
 
-  @Input('gistPromise') public gistPromise: Promise<any>
-
   public gist: any
   public gistFiles: any[]
 
   constructor (private editorService: EditorService,
+               private gistService: GistService,
                private location: Location) {
   }
 
   public async ngOnInit () {
-    this.gist = await this.gistPromise
+    this.gist = await this.gistService.onInit()
 
     this.gistFiles = Object.values(this.gist.files)
   }

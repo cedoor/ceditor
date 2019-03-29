@@ -9,7 +9,7 @@ const routes: Routes = [{
   path: ':gist_id',
   component: CeditorComponent
 }, {
-  path: ':gist_id/:file_name',
+  path: ':gist_id/:filename',
   component: CeditorComponent
 }, {
   path: '**', component: CeditorComponent
