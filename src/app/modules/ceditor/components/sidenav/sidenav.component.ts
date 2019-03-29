@@ -12,6 +12,7 @@ export class SidenavComponent implements OnInit {
 
   public gist: any
   public gistFiles: any[]
+  public currentGistFile: any
 
   constructor (private editorService: EditorService,
                private gistService: GistService,
@@ -22,9 +23,13 @@ export class SidenavComponent implements OnInit {
     this.gist = await this.gistService.onInit()
 
     this.gistFiles = Object.values(this.gist.files)
+    this.currentGistFile = this.gistService.getFile()
   }
 
-  public setCode (gistFile: any) {
+  public setGistFile (gistFile: any) {
+    this.currentGistFile = gistFile
+
+    this.gistService.setFile(gistFile.filename)
     this.editorService.setCode(gistFile.content)
     this.location.replaceState(`/${this.gist.id}/${gistFile.filename}`)
   }

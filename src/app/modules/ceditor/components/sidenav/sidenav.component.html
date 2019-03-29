@@ -1,11 +1,33 @@
 <div id="app-sidenav">
+  <div class="sidenav-sub-header">
+    Gist details
+  </div>
+
+  <div class="gist-description">
+    {{ gist?.description }}
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <mat-list>
+    <mat-list-item>
+      <h4 mat-line>Created:</h4>
+      <p mat-line>{{ gist?.created_at | date:'medium' }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>Updated:</h4>
+      <p mat-line>{{ gist?.updated_at | date:'medium' }}</p>
+    </mat-list-item>
+  </mat-list>
+
+  <div class="sidenav-sub-header">
+    Gist files
+  </div>
   <mat-action-list>
-    <div class="list-header">Gist files</div>
-    <mat-divider></mat-divider>
     <button *ngFor="let gistFile of gistFiles"
-            (click)="setCode(gistFile)"
-            mat-list-item>
-      {{ gistFile.filename }}
+            [ngClass]="{ 'selected' : currentGistFile.filename === gistFile.filename }"
+            (click)="setGistFile(gistFile)" mat-list-item>
+      <span>{{ gistFile.filename }}</span>
     </button>
   </mat-action-list>
 </div>

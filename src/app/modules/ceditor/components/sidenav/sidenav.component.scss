@@ -1,18 +1,46 @@
 div#app-sidenav {
-  width: 200px;
+  width: 240px;
+  padding: 0 10px;
 
-  div.list-header, button {
+  div.sidenav-sub-header, button,
+  mat-list-item, div.gist-description {
     font-family: "Courier New", Courier, monospace;
   }
 
-  div.list-header {
+  div.sidenav-sub-header {
     font-size: 16px;
-    padding: 10px 16px;
+    padding: 20px 0 10px 8px;
+    border-bottom: 1px solid #aaaaaa;
   }
 
-  button {
-    font-size: 15px;
+  div.gist-description {
+    padding: 16px;
+    font-style: italic;
+    color: #575757;
   }
 
-  padding: 10px 5px;
+  div.gist-description, button {
+    font-size: 14px;
+  }
+
+  p.mat-line {
+    font-size: 13px;
+  }
+
+  mat-action-list, mat-list {
+    padding-top: 0;
+
+    button, mat-list-item {
+      border-bottom: 1px solid lightgray;
+
+      span {
+        text-overflow: ellipsis !important;
+        overflow-x: hidden !important;
+      }
+    }
+
+    button.selected {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
 }
