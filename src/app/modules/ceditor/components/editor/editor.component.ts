@@ -3,6 +3,7 @@ import {EditorService} from '../../../../core/services/editor/editor.service'
 import {StorageService} from '../../../../core/services/storage/storage.service'
 import {GistService} from '../../../../core/services/gist/gist.service'
 import {SidenavService} from '../../../../core/services/sidenav/sidenav.service'
+import {UtilsService} from '../../../../core/services/utils/utils.service'
 
 @Component({
   selector: 'app-editor',
@@ -17,6 +18,7 @@ export class EditorComponent implements OnInit {
 
   constructor (private editorService: EditorService,
                private gistService: GistService,
+               private utilsService: UtilsService,
                private sidenavService: SidenavService,
                private storageService: StorageService) {
   }
@@ -52,7 +54,9 @@ export class EditorComponent implements OnInit {
       const file = this.gistService.getFile()
       const code = this.editorService.getCode()
 
-      this.storageService.set(`${this.gist.id}/${file.filename}`, code)
+      if (file.content !== code) {
+        this.storageService.set(`${this.gist.id}/${file.filename}`, code)
+      }
     }
   }
 
@@ -62,8 +66,27 @@ export class EditorComponent implements OnInit {
   private async setCode () {
     this.gist = await this.gistService.onInit()
     const file = this.gistService.getFile()
+    const cachedCode = this.storageService.get(`${this.gist.id}/${file.filename}`)
 
-    this.editorService.setCode(file.content)
+    if (cachedCode) {
+      const result = await this.utilsService.createDialog({
+        title: 'Cached code',
+        message: 'There is local saved code for this file, do you want to use it?',
+        buttons: ['No thanks', 'Ok']
+      })
+
+      switch (result) {
+        case 0:
+          this.storageService.remove(`${this.gist.id}/${file.filename}`)
+          this.editorService.setCode(file.content)
+          break
+        case 1:
+          this.editorService.setCode(cachedCode)
+          break
+      }
+    } else {
+      this.editorService.setCode(file.content)
+    }
   }
 
 }

@@ -31,4 +31,11 @@ export class StorageService {
     }
   }
 
+  /**
+   * Remove an item from the used storage.
+   */
+  public remove (key: string) {
+    this.storage.removeItem(key)
+  }
+
 }

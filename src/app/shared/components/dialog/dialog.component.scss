@@ -1,5 +1,6 @@
 div.app-dialog {
-  width: 250px;
+  font-family: "Courier New", Courier, monospace;
+  width: 270px;
 
   h2 {
     margin-top: 5px;
@@ -7,6 +8,7 @@ div.app-dialog {
   }
 
   button {
+    font-family: "Courier New", Courier, monospace;
     margin-right: 10px;
   }
 }
