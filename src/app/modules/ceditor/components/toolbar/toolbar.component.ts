@@ -23,8 +23,4 @@ export class ToolbarComponent {
     return this.sidenavService.toggle()
   }
 
-  public async updateGist () {
-    this.utilsService.showMessage('To do...', 2000)
-  }
-
 }

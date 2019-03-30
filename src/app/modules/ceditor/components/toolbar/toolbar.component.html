@@ -3,18 +3,14 @@
     <img class="logo" src="./assets/icon.png">
     <span class="title">Ceditor</span>
     <button mat-icon-button
-            (click)="toggleSidenav()">
-      <mat-icon aria-label="">menu</mat-icon>
+            (click)="toggleSidenav()"
+            matTooltip="Open or close the sidenav (Ctrl + M)">
+    <mat-icon aria-label="">menu</mat-icon>
     </button>
     <button mat-icon-button
             (click)="runCode()"
             matTooltip="Run the code (Ctrl + Enter)">
       <mat-icon aria-label="">play_arrow</mat-icon>
-    </button>
-    <button mat-icon-button
-            (click)="updateGist()"
-            matTooltip="Share the code (Alt + s)">
-      <mat-icon aria-label="">save_alt</mat-icon>
     </button>
     <span class="spacer"></span>
     <a href="https://github.com/cedoor/ceditor" target="_blank">

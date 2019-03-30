@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {UtilsService} from '../../../../core/services/utils/utils.service'
 import {StorageService} from '../../../../core/services/storage/storage.service'
 import {GistService} from '../../../../core/services/gist/gist.service'
+import {SidenavService} from '../../../../core/services/sidenav/sidenav.service'
 
 @Component({
   selector: 'app-editor',
@@ -17,8 +17,8 @@ export class EditorComponent implements OnInit {
 
   constructor (private editorService: EditorService,
                private gistService: GistService,
-               private storageService: StorageService,
-               private utilsService: UtilsService) {
+               private sidenavService: SidenavService,
+               private storageService: StorageService) {
   }
 
   /**
@@ -37,11 +37,11 @@ export class EditorComponent implements OnInit {
       },
       bindKey: {mac: 'cmd-Enter', win: 'ctrl-Enter'}
     }, {
-      name: 'share-code',
+      name: 'toggle-sidenav',
       exec: () => {
-        this.utilsService.showMessage('To do...', 2000)
+        this.sidenavService.toggle()
       },
-      bindKey: 'alt-S'
+      bindKey: {mac: 'cmd-M', win: 'ctrl-M'}
     }])
 
     // Set the code of the editor.
