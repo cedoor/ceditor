@@ -6,7 +6,7 @@
 
 # Ceditor
 
-Simple static page to write JS code.
+:memo: Online JavaScript/TypeScript editor to run & share your code with Github gist integration.
 
 ## Development
 
