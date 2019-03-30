@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core'
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material'
 import {ProgressSpinnerComponent} from '../../../shared/components/progress-spinner/progress-spinner.component'
+import {DialogComponent} from '../../../shared/components/dialog/dialog.component'
+import {DialogData} from '../../../shared/models/dialog-data'
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,15 @@ export class UtilsService {
     if (this.progressSpinnerRef) {
       this.progressSpinnerRef.close()
     }
+  }
+
+  public createDialog (data: DialogData): Promise<number> {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      disableClose: true,
+      data
+    })
+
+    return dialogRef.afterClosed().toPromise()
   }
 
 }

@@ -1,0 +1,12 @@
+<div class="app-dialog">
+  <h2 mat-dialog-title>{{ data.title }}</h2>
+  <div mat-dialog-content>
+    <p>{{ data.message }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button *ngFor="let button of data.buttons; let i = index"
+            (click)="onButtonClick(i)" mat-stroked-button>
+      {{ button }}
+    </button>
+  </div>
+</div>

@@ -10,11 +10,13 @@ import {
   MatTooltipModule
 } from '@angular/material'
 import {ProgressSpinnerComponent} from './components/progress-spinner/progress-spinner.component'
+import {DialogComponent} from './components/dialog/dialog.component'
 
 @NgModule({
   imports: [
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule
   ],
   exports: [
     FormsModule,
@@ -27,10 +29,12 @@ import {ProgressSpinnerComponent} from './components/progress-spinner/progress-s
     MatProgressSpinnerModule,
   ],
   entryComponents: [
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent,
+    DialogComponent
   ],
   declarations: [
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent,
+    DialogComponent
   ]
 })
 export class SharedModule {
