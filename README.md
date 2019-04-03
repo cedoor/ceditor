@@ -1,16 +1,96 @@
-# <img src="https://github.com/cedoor/ceditor/blob/master/resources/icon.png" alt="icon" width="40"/> Ceditor<sup>beta</sup>
+<h1 align="center" title="Ceditor">
+  <a href="https://ceditor.cedoor.org/">
+    <img width="120" alt="Ceditor logo" src="https://github.com/cedoor/ceditor/blob/master/resources/icon.png">
+    Ceditor<sup>beta</sup>
+  </a>
+</h1>
 
-[![](https://img.shields.io/github/license/cedoor/ceditor.svg?style=flat-square)](https://github.com/cedoor/ceditor/blob/master/LICENSE)
-[![](https://david-dm.org/cedoor/ceditor.svg)](https://david-dm.org/cedoor/ceditor)
-[![](https://david-dm.org/cedoor/ceditor.svg)](https://david-dm.org/cedoor/ceditor)
+<p align="center">
+  <a href="https://ceditor.cedoor.org">
+  	<img src="https://img.shields.io/badge/Ceditor-TS%2FJS%20online%20editor-green.svg">
+  </a>
+  <a href="https://david-dm.org/cedoor/ceditor">
+  	<img src="https://img.shields.io/david/cedoor/ceditor.svg">
+  </a>
+  <a href="https://david-dm.org/cedoor/ceditor">
+  	<img src="https://img.shields.io/david/dev/cedoor/ceditor.svg">
+  </a>
+  <a href="https://github.com/cedoor/ceditor/releases/latest">
+    <img src="https://img.shields.io/github/release/cedoor/ceditor.svg">
+  </a>
+  <a href="LICENSE">
+  	<img src="https://img.shields.io/github/license/cedoor/ceditor.svg?style=flat-square">
+  </a>
+</p>
+  
+Ceditor is an online JavaScript/TypeScript editor to run & share the code with [Github gists](https://gist.github.com). Passing the id of the Github gist in the URL it's possible to load the code (TypeScript or JavaScript) directly into the [Ace](https://ace.c9.io/) editor. The tool provides information on the gist and allows navigation of its associated files.
 
-# Ceditor
+It is also possible to import the code of other gist files and libraries via CDN.
 
-:memo: Online JavaScript/TypeScript editor to run & share your code with Github gist integration.
+## :paperclip: Table of Contents
+- :rocket: [Features](#features)
+- :hammer: [Install](#install)
+- :video_game: [Usage](#usage)
+- :arrow_up: [Deploy](#deploy)
+- :chart_with_upwards_trend: [Development](#development)
+  - :raised_hand: [Contribute](#contribute)
+  - :scroll: [Rules](#rules)
+    - [Commits](#commits)
+    - [Branches](#branches)
+- :page_facing_up: [License](#license)
+- :envelope: [Contacts](#contacts)
+  - :boy: [Developers](#developers)
 
-## Development
+## :rocket: Features
 
-### Rules
+:heavy_check_mark: Read gist files
+:heavy_check_mark: Run the TypeScript/JavaScript code
+:heavy_check_mark: Import JavaScript libraries via CDN
+:heavy_check_mark: Import gist files (TypeScript/JavaScript code) in the editor
+:heavy_check_mark: Sidenav gist informations
+:heavy_check_mark: Sidenav gist files navigation
+:white_large_square: About app dialog
+:white_large_square: More default Ceditor files
+:white_large_square: Create new gist
+:white_large_square: Update current gist files
+:white_large_square: Create new gist file
+
+## :hammer: Install
+
+With the following installed:
+- git
+- node >= 8
+- npm >= 6
+
+Clone the repo and install the dependencies from npm.
+
+```bash
+git clone https://github.com/cedoor/ceditor.git
+cd ceditor
+npm i
+```
+
+## :video_game: Usage
+
+For local *development* with angular dev server:
+
+```bash
+npm start
+```
+
+Then open [http://localhost:4200](http://localhost:4200) in your browser.
+
+## :arrow_up: Deploy
+
+You can self-host your own Ceditor with Github hosting service. For that, fork the repository, install the dependencies and run `npm run release` (remember to set correctly --base-href build option of angular cli command).
+
+## :chart_with_upwards_trend: Development
+
+### :raised_hand: Contribute
+
+Ceditor is a work in progress. Remember that if you want you can make a small contribution with a pull request.
+
+### :scroll: Rules
 
 #### Commits
 
@@ -55,11 +135,11 @@ Examples:
     git branch -b feat/side-bar
     git branch -b style/header
 
-## License
+## :page_facing_up: License
 * See [LICENSE](https://github.com/cedoor/ceditor/blob/master/LICENSE) file
 
-## Contact
-#### Developer
+## :envelope: Contacts
+### :boy: Developers
 * e-mail : omardesogus9@gmail.com
 * github : [@cedoor](https://github.com/cedoor)
 * website : https://cedoor.github.io
