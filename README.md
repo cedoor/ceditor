@@ -1,8 +1,6 @@
 <h1 align="center" title="Ceditor">
-  <a href="https://ceditor.cedoor.org/">
-    <img width="120" alt="Ceditor logo" src="https://github.com/cedoor/ceditor/blob/master/resources/icon.png">
-    Ceditor<sup>beta</sup>
-  </a>
+  <img width="120" alt="Ceditor logo" src="https://github.com/cedoor/ceditor/blob/master/resources/icon.png">
+  Ceditor<sup>beta</sup>
 </h1>
 
 <p align="center">
@@ -28,32 +26,32 @@ Ceditor is an online JavaScript/TypeScript editor to run & share the code with [
 It is also possible to import the code of other gist files and libraries via CDN.
 
 ## :paperclip: Table of Contents
-- :rocket: [Features](#features)
-- :hammer: [Install](#install)
-- :video_game: [Usage](#usage)
-- :arrow_up: [Deploy](#deploy)
-- :chart_with_upwards_trend: [Development](#development)
-  - :raised_hand: [Contribute](#contribute)
-  - :scroll: [Rules](#rules)
+- :rocket: [Features](#rocket-features)
+- :hammer: [Install](#hammer-install)
+- :video_game: [Usage](#video_game-usage)
+- :arrow_up: [Deploy](#arrow_up-deploy)
+- :chart_with_upwards_trend: [Development](#chart_with_upwards_trend-development)
+  - :raised_hand: [Contribute](#raised_hand-contribute)
+  - :scroll: [Rules](#scroll-rules)
     - [Commits](#commits)
     - [Branches](#branches)
-- :page_facing_up: [License](#license)
-- :envelope: [Contacts](#contacts)
-  - :boy: [Developers](#developers)
+- :page_facing_up: [License](#page_facing_up-license)
+- :telephone_receiver: [Contacts](#telephone_receiver-contacts)
+  - :boy: [Developers](#boy-developers)
 
 ## :rocket: Features
 
-:heavy_check_mark: Read gist files
-:heavy_check_mark: Run the TypeScript/JavaScript code
-:heavy_check_mark: Import JavaScript libraries via CDN
-:heavy_check_mark: Import gist files (TypeScript/JavaScript code) in the editor
-:heavy_check_mark: Sidenav gist informations
-:heavy_check_mark: Sidenav gist files navigation
-:white_large_square: About app dialog
-:white_large_square: More default Ceditor files
-:white_large_square: Create new gist
-:white_large_square: Update current gist files
-:white_large_square: Create new gist file
+- :heavy_check_mark: Read gist files
+- :heavy_check_mark: Run the TypeScript/JavaScript code
+- :heavy_check_mark: Import JavaScript libraries via CDN
+- :heavy_check_mark: Import gist files (TypeScript/JavaScript code) in the editor
+- :heavy_check_mark: Sidenav gist informations
+- :heavy_check_mark: Sidenav gist files navigation
+- :white_large_square: About app dialog
+- :white_large_square: More default Ceditor files
+- :white_large_square: Create new gist
+- :white_large_square: Update current gist files
+- :white_large_square: Create new gist file
 
 ## :hammer: Install
 
@@ -136,9 +134,9 @@ Examples:
     git branch -b style/header
 
 ## :page_facing_up: License
-* See [LICENSE](https://github.com/cedoor/ceditor/blob/master/LICENSE) file
+* See [LICENSE](https://github.com/cedoor/ceditor/blob/master/LICENSE) file.
 
-## :envelope: Contacts
+## :telephone_receiver: Contacts
 ### :boy: Developers
 * e-mail : omardesogus9@gmail.com
 * github : [@cedoor](https://github.com/cedoor)
