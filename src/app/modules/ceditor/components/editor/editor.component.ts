@@ -65,8 +65,8 @@ export class EditorComponent implements OnInit {
    */
   private async setCode () {
     this.gist = await this.gistService.onInit()
-    const file = this.gistService.getFile()
-    const cachedCode = this.storageService.get(`${this.gist.id}/${file.filename}`)
+    const gistFile = this.gistService.getFile()
+    const cachedCode = this.storageService.get(`${this.gist.id}/${gistFile.filename}`)
 
     if (cachedCode) {
       const result = await this.utilsService.createDialog({
@@ -77,15 +77,15 @@ export class EditorComponent implements OnInit {
 
       switch (result) {
         case 0:
-          this.storageService.remove(`${this.gist.id}/${file.filename}`)
-          this.editorService.setCode(file.content)
+          this.storageService.remove(`${this.gist.id}/${gistFile.filename}`)
+          this.editorService.setCode(gistFile.content)
           break
         case 1:
           this.editorService.setCode(cachedCode)
           break
       }
     } else {
-      this.editorService.setCode(file.content)
+      this.editorService.setCode(gistFile.content)
     }
   }
 
