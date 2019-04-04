@@ -1,12 +1,11 @@
 import {Injectable} from '@angular/core'
 import * as ace from 'brace'
-import {EditorCommand} from 'brace'
+import {Editor, EditorCommand} from 'brace'
 import 'brace/mode/typescript'
 import 'brace/theme/monokai'
 import 'brace/ext/language_tools'
 import 'brace/ext/searchbox'
 import {GithubService} from '../../http/github/github.service'
-import {Editor} from 'brace'
 
 declare const ts: any
 
@@ -47,18 +46,27 @@ export class EditorService {
   }
 
   public async run () {
-    const script = this.script.bind(this)
-    const gist = this.gist.bind(this)
-
-    await eval(ts.transpile(this.editor.getValue()))
+    await this.eval(this.editor.getValue())
   }
 
-  private async gist (gistId: string) {
+  private async eval (code: string) {
+    // All Ceditor functions.
+    const script = this.script.bind(this)
+    const gist = this.getGist.bind(this)
+
+    return await eval(ts.transpile(code))
+  }
+
+  private async getGist (gistId: string, fileName?: string) {
     const gist = await this.githubService.getGist(gistId)
     // @ts-ignore
-    const code = Object.values(gist.files)[0].content
+    let code = Object.values(gist.files)[0].content
 
-    return eval(ts.transpile(code))
+    if (fileName && gist.files[fileName]) {
+      code = gist.files[fileName].content
+    }
+
+    return await this.eval(code)
   }
 
   private script (url: string): Promise<any> {
