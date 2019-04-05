@@ -38,8 +38,8 @@
     </div>
     <mat-action-list>
       <button *ngFor="let gistFile of gistFiles"
-              [ngClass]="{ 'selected' : currentGistFile.filename === gistFile.filename }"
-              (click)="setGistFile(gistFile)" mat-list-item>
+              [ngClass]="{ 'selected' : currentFile === gistFile.filename }"
+              (click)="setGistFile(gistFile.filename)" mat-list-item>
         <span>{{ gistFile.filename }}</span>
       </button>
     </mat-action-list>

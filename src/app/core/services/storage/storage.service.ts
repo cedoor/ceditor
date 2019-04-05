@@ -1,5 +1,9 @@
 import {Injectable} from '@angular/core'
 
+export enum STORAGE_KEYS {
+  SIDENAV = 'sidenav'
+}
+
 @Injectable({
   providedIn: 'root'
 })

@@ -5,7 +5,7 @@ import {UtilsService} from '../../core/services/utils/utils.service'
 import {GithubService} from '../../core/http/github/github.service'
 import {ActivatedRoute} from '@angular/router'
 import {GistService} from '../../core/services/gist/gist.service'
-import {StorageService} from '../../core/services/storage/storage.service'
+import {STORAGE_KEYS, StorageService} from '../../core/services/storage/storage.service'
 
 @Component({
   selector: 'app-ceditor',
@@ -56,7 +56,7 @@ export class CeditorComponent implements OnInit {
   private initSidenavService () {
     this.sidenavService.init(this.sidenav)
 
-    const sidenavStatus = this.storageService.get('sidenav')
+    const sidenavStatus = this.storageService.get(STORAGE_KEYS.SIDENAV)
 
     if (sidenavStatus === null || sidenavStatus === true) {
       this.sidenavService.open()

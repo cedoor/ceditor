@@ -44,6 +44,12 @@ export class EditorComponent implements OnInit {
         this.sidenavService.toggle()
       },
       bindKey: {mac: 'cmd-M', win: 'ctrl-M'}
+    }, {
+      name: 'original-file',
+      exec: () => {
+        console.log('todo')
+      },
+      bindKey: {mac: 'cmd-O', win: 'ctrl-O'}
     }])
 
     // Set the code of the editor.
@@ -51,12 +57,9 @@ export class EditorComponent implements OnInit {
 
     // Save the code on keyup event.
     this.editorReference.nativeElement.onkeyup = () => {
-      const file = this.gistService.getFile()
       const code = this.editorService.getCode()
 
-      if (file.content !== code) {
-        this.storageService.set(`${this.gist.id}/${file.filename}`, code)
-      }
+      this.gistService.setCachedCode(code)
     }
   }
 
@@ -65,8 +68,8 @@ export class EditorComponent implements OnInit {
    */
   private async setCode () {
     this.gist = await this.gistService.onInit()
-    const gistFile = this.gistService.getFile()
-    const cachedCode = this.storageService.get(`${this.gist.id}/${gistFile.filename}`)
+    const cachedCode = this.gistService.getCachedCode()
+    const code = this.gistService.getCode()
 
     if (cachedCode) {
       const result = await this.utilsService.createDialog({
@@ -77,15 +80,15 @@ export class EditorComponent implements OnInit {
 
       switch (result) {
         case 0:
-          this.storageService.remove(`${this.gist.id}/${gistFile.filename}`)
-          this.editorService.setCode(gistFile.content)
+          this.gistService.removeCachedCode()
+          this.editorService.setCode(code)
           break
         case 1:
           this.editorService.setCode(cachedCode)
           break
       }
     } else {
-      this.editorService.setCode(gistFile.content)
+      this.editorService.setCode(code)
     }
   }
 
