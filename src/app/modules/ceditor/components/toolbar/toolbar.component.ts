@@ -29,7 +29,7 @@ export class ToolbarComponent {
     this.editorService.run()
   }
 
-  public async removeCachedCode () {
+  public async setOriginalCode () {
     const cachedCode = this.gistService.getCachedCode()
 
     if (cachedCode) {

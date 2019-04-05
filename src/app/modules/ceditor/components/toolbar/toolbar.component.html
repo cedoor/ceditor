@@ -1,8 +1,8 @@
 <div id="app-toolbar">
   <mat-toolbar>
-    <button class="menu-button"
-            mat-icon-button
+    <button mat-icon-button
             (click)="toggleSidenav()"
+            class="toggle-sidenav-button"
             matTooltip="Open or close the sidenav (Ctrl + M)">
       <mat-icon aria-label="">menu</mat-icon>
     </button>
@@ -14,11 +14,13 @@
 
     <button mat-icon-button
             (click)="runCode()"
+            class="run-code-button"
             matTooltip="Run the code (Ctrl + Enter)">
       <mat-icon aria-label="">play_arrow</mat-icon>
     </button>
     <button mat-icon-button
-            (click)="removeCachedCode()"
+            (click)="setOriginalCode()"
+            class="set-original-code-button"
             matTooltip="Original file (Ctrl + O)">
       <mat-icon aria-label="">reply</mat-icon>
     </button>

@@ -35,21 +35,24 @@ export class EditorComponent implements OnInit {
     this.editorService.addCommands([{
       name: 'run-code',
       exec: () => {
-        this.editorService.run()
+        // @ts-ignore
+        document.querySelector('.run-code-button').click()
       },
       bindKey: {mac: 'cmd-Enter', win: 'ctrl-Enter'}
     }, {
       name: 'toggle-sidenav',
       exec: () => {
-        this.sidenavService.toggle()
+        // @ts-ignore
+        document.querySelector('.toggle-sidenav-button').click()
       },
-      bindKey: {mac: 'cmd-M', win: 'ctrl-M'}
+      bindKey: {mac: 'alt-M', win: 'alt-M'}
     }, {
       name: 'original-file',
       exec: () => {
-        console.log('todo')
+        // @ts-ignore
+        document.querySelector('.set-original-code-button').click()
       },
-      bindKey: {mac: 'cmd-O', win: 'ctrl-O'}
+      bindKey: {mac: 'alt-O', win: 'alt-O'}
     }])
 
     // Set the code of the editor.
