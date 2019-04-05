@@ -6,7 +6,15 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+span, p, button,
+h1, h2, h3, h4, h5 {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+a, .mat-icon {
+  color: #3f4237 !important;
 }
 
 .progress-spinner-dialog {

@@ -5,34 +5,37 @@ div#app-toolbar {
   mat-toolbar {
     height: 50px;
 
-    .logo {
-      width: 30px;
-      padding-right: 16px;
-    }
-
-    .title {
+    div.logo {
       display: flex;
       align-items: center;
       height: 100%;
-      font-family: "Courier New", Courier, monospace;
-      padding-right: 16px;
+      padding: 0 16px;
+      margin: 0 10px;
+      border-left: 1px solid #aaaaaa;
       border-right: 1px solid #aaaaaa;
+
+      img {
+        height: 30px;
+        width: 30px;
+        padding-right: 16px;
+      }
+
+      h1 {
+        position: relative;
+        top: 2px;
+      }
     }
 
     .spacer {
       flex: 1 1 auto;
     }
 
-    > a {
-      color: #2F3129;
-    }
-
     button {
       margin-left: 5px;
+    }
 
-      mat-icon {
-        color: #2F3129;
-      }
+    button.menu-button {
+      margin-left: -5px;
     }
   }
 }

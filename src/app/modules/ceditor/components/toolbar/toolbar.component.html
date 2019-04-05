@@ -1,18 +1,25 @@
 <div id="app-toolbar">
   <mat-toolbar>
-    <img class="logo" src="./assets/icon.png">
-    <span class="title">Ceditor</span>
-    <button mat-icon-button
+    <button class="menu-button"
+            mat-icon-button
             (click)="toggleSidenav()"
             matTooltip="Open or close the sidenav (Ctrl + M)">
-    <mat-icon aria-label="">menu</mat-icon>
+      <mat-icon aria-label="">menu</mat-icon>
     </button>
+
+    <div class="logo">
+      <img src="./assets/icon.png">
+      <h1>Ceditor</h1>
+    </div>
+
     <button mat-icon-button
             (click)="runCode()"
             matTooltip="Run the code (Ctrl + Enter)">
       <mat-icon aria-label="">play_arrow</mat-icon>
     </button>
+
     <span class="spacer"></span>
+
     <a href="https://github.com/cedoor/ceditor" target="_blank">
       <i class="fab fa-github"></i>
     </a>
