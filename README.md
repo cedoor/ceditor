@@ -47,7 +47,7 @@ It is also possible to import the code of other gist files and libraries via CDN
 - :heavy_check_mark: Import gist files (TypeScript/JavaScript code) in the editor
 - :heavy_check_mark: Sidenav gist informations
 - :heavy_check_mark: Sidenav gist files navigation
-- :white_large_square: About app dialog
+- :heavy_check_mark: About app dialog
 - :white_large_square: More default Ceditor files
 - :white_large_square: Create new gist
 - :white_large_square: Update current gist files
