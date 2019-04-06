@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material'
 import {ProgressSpinnerComponent} from '../../../shared/components/progress-spinner/progress-spinner.component'
 import {DialogComponent} from '../../../shared/components/dialog/dialog.component'
 import {DialogData} from '../../../shared/models/dialog-data'
+import {AboutComponent} from '../../../modules/ceditor/components/about/about.component'
 
 @Injectable({
   providedIn: 'root'
@@ -43,9 +44,14 @@ export class UtilsService {
 
   public createDialog (data: DialogData): Promise<number> {
     const dialogRef = this.dialog.open(DialogComponent, {
-      disableClose: true,
       data
     })
+
+    return dialogRef.afterClosed().toPromise()
+  }
+
+  public showAbout (): Promise<number> {
+    const dialogRef = this.dialog.open(AboutComponent)
 
     return dialogRef.afterClosed().toPromise()
   }
