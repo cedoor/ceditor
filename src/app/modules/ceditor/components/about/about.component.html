@@ -1,0 +1,24 @@
+<div class="app-about">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>Ceditor<span>({{ version }})</span></mat-card-title>
+      <mat-card-subtitle>Online JavaScript/TypeScript editor.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Ceditor is an online JavaScript/TypeScript editor to run & share the code with Github gists.
+        Passing the id of the Github gist in the URL it's possible to load the code (TypeScript or JavaScript)
+        directly in the editor.
+        <br><br>
+        The tool provides information on the gist and allows navigation of its associated files.
+        It is also possible to import the code of other gist files and libraries via CDN.
+      </p>
+    </mat-card-content>
+    <mat-card-footer>
+      <a class="license-link" [href]="licenseURL" target="_blank">
+        Copyright (c) {{ currentYear }} Omar Desogus
+      </a>
+    </mat-card-footer>
+  </mat-card>
+</div>

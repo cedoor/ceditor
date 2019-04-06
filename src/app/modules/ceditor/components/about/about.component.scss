@@ -1,0 +1,32 @@
+div.app-about {
+  max-width: 500px;
+
+  mat-card {
+    box-shadow: none;
+
+    mat-card-title {
+      span {
+        font-size: 12px;
+        opacity: .8;
+      }
+    }
+
+    div.header-image {
+      background-image: url('/assets/icon.png');
+      background-size: cover;
+    }
+
+    mat-card-content {
+      line-height: 20px;
+    }
+
+    mat-card-footer {
+      a.license-link {
+        outline: none;
+        font-size: 14px;
+        padding-left: 16px;
+      }
+    }
+  }
+
+}
