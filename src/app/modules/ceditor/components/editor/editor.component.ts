@@ -47,12 +47,19 @@ export class EditorComponent implements OnInit {
       },
       bindKey: {mac: 'alt-M', win: 'alt-M'}
     }, {
-      name: 'original-file',
+      name: 'set-original-code',
       exec: () => {
         // @ts-ignore
         document.querySelector('.set-original-code-button').click()
       },
       bindKey: {mac: 'alt-O', win: 'alt-O'}
+    }, {
+      name: 'show-about',
+      exec: () => {
+        // @ts-ignore
+        document.querySelector('.show-about-button').click()
+      },
+      bindKey: {mac: 'alt-A', win: 'alt-A'}
     }])
 
     // Set the code of the editor.
@@ -89,6 +96,8 @@ export class EditorComponent implements OnInit {
         case 1:
           this.editorService.setCode(cachedCode)
           break
+        default:
+          this.editorService.setCode(cachedCode)
       }
     } else {
       this.editorService.setCode(code)
