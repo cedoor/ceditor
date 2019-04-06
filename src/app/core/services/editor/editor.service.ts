@@ -6,6 +6,7 @@ import 'brace/theme/monokai'
 import 'brace/ext/language_tools'
 import 'brace/ext/searchbox'
 import {GithubService} from '../../http/github/github.service'
+import {GistService} from '../gist/gist.service'
 
 declare const ts: any
 
@@ -16,7 +17,8 @@ export class EditorService {
 
   private editor: Editor
 
-  constructor (private githubService: GithubService) {
+  constructor (private githubService: GithubService,
+               private gistService: GistService) {
   }
 
   public createEditor (htmlElement: HTMLElement) {
@@ -57,13 +59,20 @@ export class EditorService {
     return await eval(ts.transpile(code))
   }
 
-  private async getGist (gistId: string, fileName?: string) {
-    const gist = await this.githubService.getGist(gistId)
-    // @ts-ignore
-    let code = Object.values(gist.files)[0].content
+  private async getGist (gistId: string, fileName?: string, cached: boolean = false) {
+    let code
 
-    if (fileName && gist.files[fileName]) {
-      code = gist.files[fileName].content
+    if (cached === false) {
+      const gist = await this.githubService.getGist(gistId)
+
+      if (fileName && gist.files[fileName]) {
+        code = gist.files[fileName].content
+      } else {
+        // @ts-ignore
+        code = Object.values(gist.files)[0].content
+      }
+    } else {
+      code = this.gistService.getCachedCode(fileName)
     }
 
     return await this.eval(code)
