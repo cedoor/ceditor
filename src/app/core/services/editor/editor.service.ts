@@ -60,22 +60,22 @@ export class EditorService {
   }
 
   private async getGist (gistId: string, fileName?: string, cached: boolean = false) {
-    let code
+    let file
 
     if (cached === false) {
       const gist = await this.githubService.getGist(gistId)
 
       if (fileName && gist.files[fileName]) {
-        code = gist.files[fileName].content
+        file = gist.files[fileName].content
       } else {
         // @ts-ignore
-        code = Object.values(gist.files)[0].content
+        file = Object.values(gist.files)[0].content
       }
     } else {
-      code = this.gistService.getCachedCode(fileName)
+      file = this.gistService.getCachedFile(fileName)
     }
 
-    return await this.eval(code)
+    return await this.eval(file)
   }
 
   private script (url: string): Promise<any> {

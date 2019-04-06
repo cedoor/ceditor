@@ -6,6 +6,7 @@ import {MatCardModule, MatListModule, MatSidenavModule, MatToolbarModule} from '
 import {CeditorComponent} from './ceditor.component'
 import {SidenavComponent} from './components/sidenav/sidenav.component'
 import {AboutComponent} from './components/about/about.component'
+import {CachedGistsComponent} from './components/cached-gists/cached-gists.component'
 
 @NgModule({
   imports: [
@@ -20,10 +21,12 @@ import {AboutComponent} from './components/about/about.component'
     ToolbarComponent,
     EditorComponent,
     SidenavComponent,
-    AboutComponent
+    AboutComponent,
+    CachedGistsComponent
   ],
   entryComponents: [
-    AboutComponent
+    AboutComponent,
+    CachedGistsComponent
   ]
 })
 export class CeditorModule {

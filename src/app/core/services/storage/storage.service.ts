@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core'
 
 export enum STORAGE_KEYS {
-  SIDENAV = 'sidenav'
+  SIDENAV = 'sidenav',
+  GISTS = 'gists'
 }
 
 @Injectable({

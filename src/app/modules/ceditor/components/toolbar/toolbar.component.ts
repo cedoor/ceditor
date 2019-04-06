@@ -30,7 +30,7 @@ export class ToolbarComponent {
   }
 
   public async setOriginalCode () {
-    const cachedCode = this.gistService.getCachedCode()
+    const cachedCode = this.gistService.getCachedFile()
 
     if (cachedCode) {
       const result = await this.utilsService.createDialog({
@@ -41,9 +41,9 @@ export class ToolbarComponent {
 
       switch (result) {
         case 1:
-          this.gistService.removeCachedCode()
+          this.gistService.removeCachedFile()
 
-          const code = this.gistService.getCode()
+          const code = this.gistService.getFile()
           this.editorService.setCode(code)
           break
         case 0:
@@ -54,6 +54,10 @@ export class ToolbarComponent {
 
   public showAbout () {
     this.utilsService.showAbout()
+  }
+
+  public showCachedFiles () {
+    this.utilsService.showCachedFiles()
   }
 
 }

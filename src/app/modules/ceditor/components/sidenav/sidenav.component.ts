@@ -14,7 +14,7 @@ export class SidenavComponent implements OnInit {
 
   public gist: any
   public gistFiles: any[]
-  public currentFile: string
+  public currentFileName: string
 
   constructor (private editorService: EditorService,
                private gistService: GistService,
@@ -27,35 +27,35 @@ export class SidenavComponent implements OnInit {
     this.gist = await this.gistService.onInit()
 
     this.gistFiles = Object.values(this.gist.files)
-    this.currentFile = this.gistService.getCurrentFile()
+    this.currentFileName = this.gistService.getCurrentFileName()
   }
 
-  public async setGistFile (fileName: string) {
-    const cachedCode = this.gistService.getCachedCode(fileName)
-    const code = this.gistService.getCode(fileName)
+  public async openFile (fileName: string) {
+    const cachedFile = this.gistService.getCachedFile(fileName)
+    const file = this.gistService.getFile(fileName)
 
-    if (cachedCode) {
+    if (cachedFile) {
       const result = await this.utilsService.createDialog({
         title: 'Cached code',
-        message: 'There is local saved code for this file, do you want to use it?',
+        message: 'There is cached code for this file, do you want to use it?',
         buttons: ['No thanks', 'Ok']
       })
 
       switch (result) {
         case 0:
-          this.gistService.removeCachedCode(fileName)
-          this.editorService.setCode(code)
+          this.gistService.removeCachedFile(fileName)
+          this.editorService.setCode(file)
           break
         case 1:
-          this.editorService.setCode(cachedCode)
+          this.editorService.setCode(cachedFile)
           break
       }
     } else {
-      this.editorService.setCode(code)
+      this.editorService.setCode(file)
     }
 
-    this.currentFile = fileName
-    this.gistService.setCurrentFile(fileName)
+    this.currentFileName = fileName
+    this.gistService.setCurrentFileName(fileName)
     this.location.replaceState(`/${this.gist.id}/${fileName}`)
   }
 

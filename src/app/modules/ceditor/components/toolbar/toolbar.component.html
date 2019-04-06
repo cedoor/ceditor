@@ -24,13 +24,19 @@
             matTooltip="Original file (Alt + O)">
       <mat-icon aria-label="">reply</mat-icon>
     </button>
+    <button mat-icon-button
+            (click)="showCachedFiles()"
+            class="show-cached-gists-button"
+            matTooltip="Show cached gists (Alt + G)">
+      <mat-icon aria-label="">file_copy</mat-icon>
+    </button>
 
     <span class="spacer"></span>
 
     <button mat-icon-button
             (click)="showAbout()"
             class="show-about-button"
-            matTooltip="Show about (Alt + A)">
+            matTooltip="Show about (Alt + I)">
       <mat-icon aria-label="">info</mat-icon>
     </button>
 

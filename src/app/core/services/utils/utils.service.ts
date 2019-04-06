@@ -4,6 +4,7 @@ import {ProgressSpinnerComponent} from '../../../shared/components/progress-spin
 import {DialogComponent} from '../../../shared/components/dialog/dialog.component'
 import {DialogData} from '../../../shared/models/dialog-data'
 import {AboutComponent} from '../../../modules/ceditor/components/about/about.component'
+import {CachedGistsComponent} from '../../../modules/ceditor/components/cached-gists/cached-gists.component'
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,12 @@ export class UtilsService {
 
   public showAbout (): Promise<number> {
     const dialogRef = this.dialog.open(AboutComponent)
+
+    return dialogRef.afterClosed().toPromise()
+  }
+
+  public showCachedFiles (): Promise<number> {
+    const dialogRef = this.dialog.open(CachedGistsComponent)
 
     return dialogRef.afterClosed().toPromise()
   }

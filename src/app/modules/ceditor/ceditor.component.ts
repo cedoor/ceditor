@@ -35,7 +35,8 @@ export class CeditorComponent implements OnInit {
   private async init () {
     this.utilsService.showProgressSpinner()
 
-    await this.initGistService()
+    const gist = await this.initGistService()
+    this.cacheGist(gist)
 
     this.utilsService.hideProgressSpinner()
   }
@@ -48,6 +49,32 @@ export class CeditorComponent implements OnInit {
     const filename = this.route.snapshot.paramMap.get('filename')
 
     return await this.gistService.init(gistId, filename)
+  }
+
+  /**
+   * Save the gist in the storage.
+   */
+  private cacheGist (gist: any) {
+    let gists = this.storageService.get(STORAGE_KEYS.GISTS)
+    const cachedGist = {
+      id: gist.id,
+      description: gist.description,
+      fileNames: Object.keys(gist.files)
+    }
+
+    if (gists) {
+      const sameGist = gists.find(function (existingGist) {
+        return existingGist.id === gist.id
+      })
+
+      if (!sameGist) {
+        gists.push(cachedGist)
+      }
+    } else {
+      gists = [cachedGist]
+    }
+
+    this.storageService.set(STORAGE_KEYS.GISTS, gists)
   }
 
   /**

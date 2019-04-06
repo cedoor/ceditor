@@ -10,14 +10,14 @@ export class GistService {
   private gist: any
   private currentFile: string
 
-  private readonly cachedFileCodes: any
+  private readonly cachedFiles: any
 
   private onInitEvent: EventEmitter<any>
 
   constructor (private githubService: GithubService,
                private storageService: StorageService) {
     this.onInitEvent = new EventEmitter()
-    this.cachedFileCodes = {}
+    this.cachedFiles = {}
   }
 
   /**
@@ -37,11 +37,11 @@ export class GistService {
 
     // Get local cached files.
     for (const key of Object.keys(this.gist.files)) {
-      this.cachedFileCodes[key] = this.storageService.get(`${this.gist.id}/${key}`)
+      this.cachedFiles[key] = this.storageService.get(`${this.gist.id}/${key}`)
     }
 
     // Set the current file used.
-    this.setCurrentFile(fileName)
+    this.setCurrentFileName(fileName)
 
     this.onInitEvent.next(this.gist)
     this.onInitEvent.complete()
@@ -59,40 +59,37 @@ export class GistService {
   /**
    * Set the name of the current used gist file.
    */
-  public setCurrentFile (fileName?: string) {
+  public setCurrentFileName (fileName?: string) {
     this.currentFile = fileName || Object.keys(this.gist.files)[0]
   }
 
   /**
    * Get the name of the current used gist file.
    */
-  public getCurrentFile (): string {
+  public getCurrentFileName (): string {
     return this.currentFile
   }
 
   /**
-   * Set the cached code in the storage if it's different from original gist code.
+   * Set the cached file in the storage if it's different from original gist file.
    */
-  public setCachedCode (code: string, fileName: string = this.currentFile) {
-    if (this.gist.files[this.currentFile].content !== code) {
-      this.cachedFileCodes[fileName] = code
+  public setCachedFile (code: string, fileName: string = this.currentFile) {
+      this.cachedFiles[fileName] = code
       this.storageService.set(`${this.gist.id}/${fileName}`, code)
-    }
   }
 
   /**
-   * Remove the cached code in the storage if it's different from original gist code.
+   * Remove the cached file in the storage if it's different from original gist file.
    */
-  public removeCachedCode (fileName: string = this.currentFile) {
-    delete this.cachedFileCodes[fileName]
+  public removeCachedFile (fileName: string = this.currentFile) {
+    delete this.cachedFiles[fileName]
     this.storageService.remove(`${this.gist.id}/${fileName}`)
   }
 
   /**
-   * Return the code of the file with the name passed as parameter
-   * or the code of the current file.
+   * Return the file with the name passed as parameter or the current file.
    */
-  public getCode (fileName: string = this.currentFile) {
+  public getFile (fileName: string = this.currentFile) {
     return this.gist.files[fileName].content
   }
 
@@ -100,8 +97,8 @@ export class GistService {
    * Return the cached code of the file with the name passed as parameter
    * or the cached code of the current file.
    */
-  public getCachedCode (fileName: string = this.currentFile) {
-    return this.cachedFileCodes[fileName]
+  public getCachedFile (fileName: string = this.currentFile) {
+    return this.cachedFiles[fileName]
   }
 
   /**

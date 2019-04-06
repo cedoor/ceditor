@@ -59,7 +59,14 @@ export class EditorComponent implements OnInit {
         // @ts-ignore
         document.querySelector('.show-about-button').click()
       },
-      bindKey: {mac: 'alt-A', win: 'alt-A'}
+      bindKey: {mac: 'alt-A', win: 'alt-I'}
+    }, {
+      name: 'show-cached-gists',
+      exec: () => {
+        // @ts-ignore
+        document.querySelector('.show-cached-gists-button').click()
+      },
+      bindKey: {mac: 'alt-C', win: 'alt-G'}
     }])
 
     // Set the code of the editor.
@@ -69,7 +76,7 @@ export class EditorComponent implements OnInit {
     this.editorReference.nativeElement.onkeyup = () => {
       const code = this.editorService.getCode()
 
-      this.gistService.setCachedCode(code)
+      this.gistService.setCachedFile(code)
     }
   }
 
@@ -78,29 +85,30 @@ export class EditorComponent implements OnInit {
    */
   private async setCode () {
     this.gist = await this.gistService.onInit()
-    const cachedCode = this.gistService.getCachedCode()
-    const code = this.gistService.getCode()
+    const cachedFile = this.gistService.getCachedFile()
+    const file = this.gistService.getFile()
 
-    if (cachedCode) {
+    if (cachedFile && cachedFile !== file) {
       const result = await this.utilsService.createDialog({
         title: 'Cached code',
-        message: 'There is local saved code for this file, do you want to use it?',
+        message: 'There is cached code for this file, do you want to use it?',
         buttons: ['No thanks', 'Ok']
       })
 
       switch (result) {
         case 0:
-          this.gistService.removeCachedCode()
-          this.editorService.setCode(code)
+          this.gistService.removeCachedFile()
+          this.editorService.setCode(file)
           break
         case 1:
-          this.editorService.setCode(cachedCode)
+          this.editorService.setCode(cachedFile)
           break
         default:
-          this.editorService.setCode(cachedCode)
+          this.editorService.setCode(cachedFile)
       }
     } else {
-      this.editorService.setCode(code)
+      this.gistService.removeCachedFile()
+      this.editorService.setCode(file)
     }
   }
 
