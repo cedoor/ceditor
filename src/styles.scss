@@ -9,7 +9,9 @@ body {
 }
 
 p, button,
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5,
+mat-card-title, a,
+mat-card-subtitle {
   font-family: "Courier New", Courier, monospace !important;
 }
 
