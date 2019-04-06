@@ -27,8 +27,17 @@
 
     <span class="spacer"></span>
 
-    <a href="https://github.com/cedoor/ceditor" target="_blank">
-      <i class="fab fa-github"></i>
-    </a>
+    <button mat-icon-button
+            (click)="showAbout()"
+            class="show-about-button"
+            matTooltip="About">
+      <mat-icon aria-label="">info</mat-icon>
+    </button>
+
+    <div class="links">
+      <a href="https://github.com/cedoor/ceditor" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
   </mat-toolbar>
 </div>

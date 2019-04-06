@@ -52,4 +52,8 @@ export class ToolbarComponent {
     }
   }
 
+  public showAbout () {
+    this.utilsService.showAbout()
+  }
+
 }

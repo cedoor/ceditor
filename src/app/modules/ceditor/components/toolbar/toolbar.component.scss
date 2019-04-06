@@ -30,8 +30,18 @@ div#app-toolbar {
       flex: 1 1 auto;
     }
 
+    div.links {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      margin-right: -15px;
+      margin-left: 10px;
+      padding: 0 16px;
+      border-left: 1px solid #aaaaaa;
+    }
+
     button {
-      margin-left: 5px;
+      margin: 0 3px;
     }
 
     button.toggle-sidenav-button {
