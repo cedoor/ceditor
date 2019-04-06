@@ -4,9 +4,13 @@
     <p>{{ data.message }}</p>
   </div>
   <div mat-dialog-actions>
-    <button *ngFor="let button of data.buttons; let i = index"
-            (click)="onButtonClick(i)" mat-stroked-button>
-      {{ button }}
-    </button>
+    <span *ngFor="let button of data.buttons; let i = index; let last = last">
+      <button *ngIf="last" (click)="onButtonClick(i)" cdkFocusInitial mat-stroked-button>
+        {{ button }}
+      </button>
+      <button *ngIf="!last" (click)="onButtonClick(i)" mat-stroked-button>
+        {{ button }}
+      </button>
+    </span>
   </div>
 </div>
