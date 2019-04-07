@@ -15,9 +15,4 @@ export class CachedGistsComponent {
     this.cachedGists = this.storageService.getCachedGists()
   }
 
-  public removeCachedGist (cachedGist: CachedGist) {
-    this.storageService.removeCachedGist(cachedGist)
-    this.cachedGists = this.storageService.getCachedGists()
-  }
-
 }
