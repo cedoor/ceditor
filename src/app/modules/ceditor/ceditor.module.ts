@@ -5,7 +5,7 @@ import {EditorComponent} from './components/editor/editor.component'
 import {MatCardModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material'
 import {CeditorComponent} from './ceditor.component'
 import {SidenavComponent} from './components/sidenav/sidenav.component'
-import {AboutComponent} from './components/about/about.component'
+import {AboutDialogComponent} from './components/about-dialog/about-dialog.component'
 import {CachedGistsComponent} from './components/cached-gists/cached-gists.component'
 
 @NgModule({
@@ -21,11 +21,11 @@ import {CachedGistsComponent} from './components/cached-gists/cached-gists.compo
     ToolbarComponent,
     EditorComponent,
     SidenavComponent,
-    AboutComponent,
+    AboutDialogComponent,
     CachedGistsComponent
   ],
   entryComponents: [
-    AboutComponent,
+    AboutDialogComponent,
     CachedGistsComponent
   ]
 })

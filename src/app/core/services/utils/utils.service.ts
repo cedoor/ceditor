@@ -3,8 +3,9 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material'
 import {ProgressSpinnerComponent} from '../../../shared/components/progress-spinner/progress-spinner.component'
 import {DialogComponent} from '../../../shared/components/dialog/dialog.component'
 import {DialogData} from '../../../shared/models/dialog-data'
-import {AboutComponent} from '../../../modules/ceditor/components/about/about.component'
+import {AboutDialogComponent} from '../../../modules/ceditor/components/about-dialog/about-dialog.component'
 import {CachedGistsComponent} from '../../../modules/ceditor/components/cached-gists/cached-gists.component'
+import {GithubService} from '../../http/github/github.service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UtilsService {
   private progressSpinnerRef: MatDialogRef<ProgressSpinnerComponent>
 
   constructor (private snackBar: MatSnackBar,
+               private githubService: GithubService,
                private dialog: MatDialog) {
   }
 
@@ -51,8 +53,20 @@ export class UtilsService {
     return dialogRef.afterClosed().toPromise()
   }
 
-  public showAbout (): Promise<number> {
-    const dialogRef = this.dialog.open(AboutComponent)
+  public async showAbout (): Promise<number> {
+    this.showProgressSpinner()
+
+    const latestRelease = await this.githubService.getLatestRelease('cedoor', 'ceditor')
+    const license = await this.githubService.getLicense('cedoor', 'ceditor')
+
+    this.hideProgressSpinner()
+
+    const dialogRef = this.dialog.open(AboutDialogComponent, {
+      data: {
+        version: latestRelease.tag_name,
+        licenseURL: license.html_url
+      }
+    })
 
     return dialogRef.afterClosed().toPromise()
   }

@@ -54,10 +54,10 @@ export class EditorComponent implements OnInit {
       },
       bindKey: {mac: 'alt-O', win: 'alt-O'}
     }, {
-      name: 'show-about',
+      name: 'show-about-dialog',
       exec: () => {
         // @ts-ignore
-        document.querySelector('.show-about-button').click()
+        document.querySelector('.show-about-dialog-button').click()
       },
       bindKey: {mac: 'alt-A', win: 'alt-I'}
     }, {
