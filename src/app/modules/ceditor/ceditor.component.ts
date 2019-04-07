@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core'
 import {MatSidenav} from '@angular/material'
 import {SidenavService} from '../../core/services/sidenav/sidenav.service'
-import {UtilsService} from '../../core/services/utils/utils.service'
+import {DialogService} from '../../core/services/dialog/dialog.service'
 import {GithubService} from '../../core/http/github/github.service'
 import {ActivatedRoute} from '@angular/router'
 import {GistService} from '../../core/services/gist/gist.service'
@@ -21,7 +21,7 @@ export class CeditorComponent implements OnInit {
                private gistService: GistService,
                private storageService: StorageService,
                private route: ActivatedRoute,
-               private utilsService: UtilsService) {
+               private dialogService: DialogService) {
     this.init()
   }
 
@@ -33,12 +33,12 @@ export class CeditorComponent implements OnInit {
    * Initialization function of the component.
    */
   private async init () {
-    this.utilsService.showProgressSpinner()
+    this.dialogService.showProgressSpinner()
 
     const gist = await this.initGistService()
     this.cacheGist(gist)
 
-    this.utilsService.hideProgressSpinner()
+    this.dialogService.hideProgressSpinner()
   }
 
   /**

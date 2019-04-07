@@ -10,7 +10,7 @@ import {GithubService} from '../../http/github/github.service'
 @Injectable({
   providedIn: 'root'
 })
-export class UtilsService {
+export class DialogService {
 
   private progressSpinnerRef: MatDialogRef<ProgressSpinnerComponent>
 
@@ -19,12 +19,18 @@ export class UtilsService {
                private dialog: MatDialog) {
   }
 
+  /**
+   * Show a message with the material snack bar.
+   */
   public showMessage (message: string, duration?: number) {
     this.snackBar.open(message, 'Dismiss', {
       duration
     })
   }
 
+  /**
+   * Show the progress spinner.
+   */
   public showProgressSpinner (duration?: number) {
     this.progressSpinnerRef = this.dialog.open(ProgressSpinnerComponent, {
       disableClose: true,
@@ -39,13 +45,20 @@ export class UtilsService {
     }
   }
 
+  /**
+   * Hide the progress spinner.
+   */
   public hideProgressSpinner () {
     if (this.progressSpinnerRef) {
       this.progressSpinnerRef.close()
     }
   }
 
-  public createDialog (data: DialogData): Promise<number> {
+  /**
+   * Create a generic dialog with title, message and actions.
+   * You can create a confirm dialog or a simple info dialog.
+   */
+  public showGenericDialog (data: DialogData): Promise<number> {
     const dialogRef = this.dialog.open(DialogComponent, {
       data
     })
@@ -53,7 +66,10 @@ export class UtilsService {
     return dialogRef.afterClosed().toPromise()
   }
 
-  public async showAbout (): Promise<number> {
+  /**
+   * Show the about dialog.
+   */
+  public async showAboutDialog (): Promise<number> {
     this.showProgressSpinner()
 
     const latestRelease = await this.githubService.getLatestRelease('cedoor', 'ceditor')
@@ -71,7 +87,10 @@ export class UtilsService {
     return dialogRef.afterClosed().toPromise()
   }
 
-  public showCachedFiles (): Promise<number> {
+  /**
+   * Show the dialog of the cached gists.
+   */
+  public showCachedGistsDialog (): Promise<number> {
     const dialogRef = this.dialog.open(CachedGistsComponent)
 
     return dialogRef.afterClosed().toPromise()

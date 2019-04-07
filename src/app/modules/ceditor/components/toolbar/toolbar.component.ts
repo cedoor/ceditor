@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {UtilsService} from '../../../../core/services/utils/utils.service'
+import {DialogService} from '../../../../core/services/dialog/dialog.service'
 import {SidenavService} from '../../../../core/services/sidenav/sidenav.service'
 import {STORAGE_KEYS, StorageService} from '../../../../core/services/storage/storage.service'
 import {GistService} from '../../../../core/services/gist/gist.service'
@@ -13,7 +13,7 @@ import {GistService} from '../../../../core/services/gist/gist.service'
 export class ToolbarComponent {
 
   constructor (private editorService: EditorService,
-               private utilsService: UtilsService,
+               private dialogService: DialogService,
                private gistService: GistService,
                private storageService: StorageService,
                private sidenavService: SidenavService) {
@@ -33,7 +33,7 @@ export class ToolbarComponent {
     const cachedCode = this.gistService.getCachedFile()
 
     if (cachedCode) {
-      const result = await this.utilsService.createDialog({
+      const result = await this.dialogService.showGenericDialog({
         title: 'Remove cached code',
         message: 'Are you sure you want to remove the cached code?',
         buttons: ['Cancel', 'Yes']
@@ -53,11 +53,11 @@ export class ToolbarComponent {
   }
 
   public showAbout () {
-    this.utilsService.showAbout()
+    this.dialogService.showAboutDialog()
   }
 
   public showCachedFiles () {
-    this.utilsService.showCachedFiles()
+    this.dialogService.showCachedGistsDialog()
   }
 
 }

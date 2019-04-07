@@ -3,7 +3,7 @@ import {EditorService} from '../../../../core/services/editor/editor.service'
 import {Location} from '@angular/common'
 import {GistService} from '../../../../core/services/gist/gist.service'
 import {StorageService} from '../../../../core/services/storage/storage.service'
-import {UtilsService} from '../../../../core/services/utils/utils.service'
+import {DialogService} from '../../../../core/services/dialog/dialog.service'
 
 @Component({
   selector: 'app-sidenav',
@@ -18,7 +18,7 @@ export class SidenavComponent implements OnInit {
 
   constructor (private editorService: EditorService,
                private gistService: GistService,
-               private utilsService: UtilsService,
+               private dialogService: DialogService,
                private storageService: StorageService,
                private location: Location) {
   }
@@ -35,7 +35,7 @@ export class SidenavComponent implements OnInit {
     const file = this.gistService.getFile(fileName)
 
     if (cachedFile) {
-      const result = await this.utilsService.createDialog({
+      const result = await this.dialogService.showGenericDialog({
         title: 'Cached code',
         message: 'There is cached code for this file, do you want to use it?',
         buttons: ['No thanks', 'Ok']

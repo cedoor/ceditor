@@ -1,9 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
-import {StorageService} from '../../../../core/services/storage/storage.service'
 import {GistService} from '../../../../core/services/gist/gist.service'
-import {SidenavService} from '../../../../core/services/sidenav/sidenav.service'
-import {UtilsService} from '../../../../core/services/utils/utils.service'
+import {DialogService} from '../../../../core/services/dialog/dialog.service'
 
 @Component({
   selector: 'app-editor',
@@ -18,9 +16,7 @@ export class EditorComponent implements OnInit {
 
   constructor (private editorService: EditorService,
                private gistService: GistService,
-               private utilsService: UtilsService,
-               private sidenavService: SidenavService,
-               private storageService: StorageService) {
+               private dialogService: DialogService) {
   }
 
   /**
@@ -89,7 +85,7 @@ export class EditorComponent implements OnInit {
     const file = this.gistService.getFile()
 
     if (cachedFile && cachedFile !== file) {
-      const result = await this.utilsService.createDialog({
+      const result = await this.dialogService.showGenericDialog({
         title: 'Cached code',
         message: 'There is cached code for this file, do you want to use it?',
         buttons: ['No thanks', 'Ok']
