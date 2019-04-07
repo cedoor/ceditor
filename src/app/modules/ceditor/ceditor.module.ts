@@ -2,11 +2,24 @@ import {NgModule} from '@angular/core'
 import {SharedModule} from '../../shared/shared.module'
 import {ToolbarComponent} from './components/toolbar/toolbar.component'
 import {EditorComponent} from './components/editor/editor.component'
-import {MatCardModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material'
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatIconModule,
+  MatListModule,
+  MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatToolbarModule,
+  MatTooltipModule
+} from '@angular/material'
 import {CeditorComponent} from './ceditor.component'
 import {SidenavComponent} from './components/sidenav/sidenav.component'
 import {AboutDialogComponent} from './components/about-dialog/about-dialog.component'
 import {CachedGistsComponent} from './components/cached-gists/cached-gists.component'
+import {ProgressSpinnerComponent} from './components/progress-spinner/progress-spinner.component'
+import {GenericDialogComponent} from './components/generic-dialog/generic-dialog.component'
 
 @NgModule({
   imports: [
@@ -14,7 +27,14 @@ import {CachedGistsComponent} from './components/cached-gists/cached-gists.compo
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatButtonModule
   ],
   declarations: [
     CeditorComponent,
@@ -22,11 +42,15 @@ import {CachedGistsComponent} from './components/cached-gists/cached-gists.compo
     EditorComponent,
     SidenavComponent,
     AboutDialogComponent,
-    CachedGistsComponent
+    CachedGistsComponent,
+    ProgressSpinnerComponent,
+    GenericDialogComponent
   ],
   entryComponents: [
     AboutDialogComponent,
-    CachedGistsComponent
+    CachedGistsComponent,
+    ProgressSpinnerComponent,
+    GenericDialogComponent
   ]
 })
 export class CeditorModule {
