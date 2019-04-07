@@ -2,14 +2,11 @@
   <h2 mat-dialog-title>Cached gists</h2>
   <div mat-dialog-content>
     <mat-nav-list>
-      <mat-list-item *ngFor="let cachedGist of cachedGists">
-        <a mat-line [href]="'/' + cachedGist.id">
-          {{ cachedGist.id }}
-        </a>
-        <button mat-icon-button (click)="removeCachedGist(cachedGist)">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-list-item>
+      <a *ngFor="let cachedGist of cachedGists"
+         [href]="'/' + cachedGist.id" mat-list-item>
+        <h3 matLine>{{ cachedGist.id }}</h3>
+        <p matLine>{{ cachedGist.fileNames.join(', ') }}</p>
+      </a>
     </mat-nav-list>
   </div>
 </div>
