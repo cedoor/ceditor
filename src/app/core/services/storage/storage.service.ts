@@ -33,11 +33,11 @@ export class StorageService {
   /**
    * Remove the cached gist from the storage.
    */
-  public removeCachedGist (cachedGist: CachedGist): void {
+  public removeCachedGist (gistId: string): void {
     const cachedGists = this.getCachedGists()
 
     for (let i = 0; i < cachedGists.length; i++) {
-      if (cachedGists[i].id === cachedGist.id) {
+      if (cachedGists[i].id === gistId) {
         cachedGists.splice(i, 1)
         break
       }

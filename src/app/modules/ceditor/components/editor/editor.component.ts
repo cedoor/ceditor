@@ -43,26 +43,12 @@ export class EditorComponent implements OnInit {
       },
       bindKey: {mac: 'alt-M', win: 'alt-M'}
     }, {
-      name: 'set-original-code',
-      exec: () => {
-        // @ts-ignore
-        document.querySelector('.set-original-code-button').click()
-      },
-      bindKey: {mac: 'alt-O', win: 'alt-O'}
-    }, {
       name: 'show-about-dialog',
       exec: () => {
         // @ts-ignore
         document.querySelector('.show-about-dialog-button').click()
       },
-      bindKey: {mac: 'alt-A', win: 'alt-I'}
-    }, {
-      name: 'show-cached-gists',
-      exec: () => {
-        // @ts-ignore
-        document.querySelector('.show-cached-gists-button').click()
-      },
-      bindKey: {mac: 'alt-C', win: 'alt-G'}
+      bindKey: {mac: 'alt-I', win: 'alt-I'}
     }])
 
     // Set the code of the editor.

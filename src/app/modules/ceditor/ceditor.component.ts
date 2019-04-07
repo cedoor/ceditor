@@ -35,12 +35,7 @@ export class CeditorComponent implements OnInit {
   private async init () {
     this.dialogService.showProgressSpinner()
 
-    const gist = await this.initGistService()
-    this.storageService.addCachedGist({
-      id: gist.id,
-      description: gist.description,
-      fileNames: Object.keys(gist.files)
-    })
+    await this.initGistService()
 
     this.dialogService.hideProgressSpinner()
   }

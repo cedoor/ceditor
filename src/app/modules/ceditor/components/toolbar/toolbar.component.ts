@@ -12,11 +12,17 @@ import {StorageService} from '../../../../core/services/storage/storage.service'
 })
 export class ToolbarComponent {
 
+  private gist: any
+
   constructor (private editorService: EditorService,
                private dialogService: DialogService,
                private gistService: GistService,
                private storageService: StorageService,
                private sidenavService: SidenavService) {
+  }
+
+  public async ngOnInit () {
+    this.gist = await this.gistService.onInit()
   }
 
   public async toggleSidenav () {
@@ -29,7 +35,7 @@ export class ToolbarComponent {
     this.editorService.run()
   }
 
-  public async setOriginalCode () {
+  public async clearCurrentCode () {
     const cachedCode = this.gistService.getCachedFile()
 
     if (cachedCode) {
@@ -49,14 +55,28 @@ export class ToolbarComponent {
         case 0:
           break
       }
+    } else {
+      this.dialogService.showMessage('There is not cached code for this file!', 5000)
     }
+  }
+
+  public removeGistFromCache () {
+    this.storageService.removeCachedGist(this.gist.id)
+  }
+
+  public addGistToCache () {
+    this.storageService.addCachedGist({
+      id: this.gist.id,
+      description: this.gist.description,
+      fileNames: Object.keys(this.gist.files)
+    })
   }
 
   public showAbout () {
     this.dialogService.showAboutDialog()
   }
 
-  public showCachedFiles () {
+  public showCachedGists () {
     this.dialogService.showCachedGistsDialog()
   }
 

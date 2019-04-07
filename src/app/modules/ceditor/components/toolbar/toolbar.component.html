@@ -19,23 +19,43 @@
       <mat-icon aria-label="">play_arrow</mat-icon>
     </button>
     <button mat-icon-button
-            (click)="setOriginalCode()"
-            class="set-original-code-button"
-            matTooltip="Original file (Alt + O)">
-      <mat-icon aria-label="">reply</mat-icon>
+            [matMenuTriggerFor]="cacheMenu"
+            class="show-cache-menu-button"
+            matTooltip="Show cache menu">
+      <mat-icon aria-label="">sd_storage</mat-icon>
     </button>
-    <button mat-icon-button
-            (click)="showCachedFiles()"
-            class="show-cached-gists-button"
-            matTooltip="Show cached gists (Alt + G)">
-      <mat-icon aria-label="">file_copy</mat-icon>
-    </button>
+    <mat-menu #cacheMenu="matMenu">
+      <button (click)="showCachedGists()"
+              matTooltip="Show cached gists"
+              matTooltipPosition="right"
+              mat-menu-item>
+        Show gists
+      </button>
+      <button (click)="addGistToCache()"
+              matTooltip="Add gist to cache"
+              matTooltipPosition="right"
+              mat-menu-item>
+        Add gist
+      </button>
+      <button (click)="removeGistFromCache()"
+              matTooltip="Add gist to cache"
+              matTooltipPosition="right"
+              mat-menu-item>
+        Remove gist
+      </button>
+      <button (click)="clearCurrentCode()"
+              matTooltip="Remove current cached code"
+              matTooltipPosition="right"
+              mat-menu-item>
+        Clear code
+      </button>
+    </mat-menu>
 
     <span class="spacer"></span>
 
     <button mat-icon-button
             (click)="showAbout()"
-            class="show-about-button"
+            class="show-about-dialog-button"
             matTooltip="Show about (Alt + I)">
       <mat-icon aria-label="">info</mat-icon>
     </button>
