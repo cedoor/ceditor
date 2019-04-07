@@ -1,46 +1,98 @@
 import {Injectable} from '@angular/core'
-
-export enum STORAGE_KEYS {
-  SIDENAV = 'sidenav',
-  GISTS = 'gists'
-}
+import {BASE_STORAGE_KEYS, BaseStorageService} from '../base-storage/base-storage.service'
+import {CachedGist} from '../../../shared/models/cached-gist'
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  private storage: Storage
-
-  constructor () {
-    this.storage = localStorage
+  constructor (private baseStorageService: BaseStorageService) {
   }
 
   /**
-   * Set an item in the used storage.
+   * Add a gist in the array of cached gists of the storage if a gist
+   * with the same id doesn't already exists.
    */
-  public set (key: string, item: any) {
-    this.storage.setItem(key, JSON.stringify(item))
-  }
+  public addCachedGist (cachedGist: CachedGist): void {
+    const cachedGists = this.getCachedGists()
 
-  /**
-   * Get an item from the user storage.
-   */
-  public get (key: string) {
-    const item = this.storage.getItem(key)
+    if (cachedGists !== null) {
+      for (const existingCachedGist of cachedGists) {
+        if (existingCachedGist.id === cachedGist.id) {
+          return
+        }
+      }
 
-    try {
-      return JSON.parse(item)
-    } catch (error) {
-      return item
+      cachedGists.push(cachedGist)
     }
+
+    this.setCachedGists(cachedGists || [cachedGist])
   }
 
   /**
-   * Remove an item from the used storage.
+   * Remove the cached gist from the storage.
    */
-  public remove (key: string) {
-    this.storage.removeItem(key)
+  public removeCachedGist (cachedGist: CachedGist): void {
+    const cachedGists = this.getCachedGists()
+
+    for (let i = 0; i < cachedGists.length; i++) {
+      if (cachedGists[i].id === cachedGist.id) {
+        cachedGists.splice(i, 1)
+        break
+      }
+    }
+
+    this.setCachedGists(cachedGists)
+  }
+
+  /**
+   * Set the cached gists in the storage.
+   */
+  public setCachedGists (cachedGists: CachedGist[]): void {
+    return this.baseStorageService.set(BASE_STORAGE_KEYS.GISTS, cachedGists)
+  }
+
+  /**
+   * Return all the cached gists from the storage.
+   */
+  public getCachedGists (): CachedGist[] | null {
+    return this.baseStorageService.get(BASE_STORAGE_KEYS.GISTS)
+  }
+
+  /**
+   * Save the status of the sidenav in the storage.
+   */
+  public setSidenavStatus (status: boolean): void {
+    this.baseStorageService.set(BASE_STORAGE_KEYS.SIDENAV, status)
+  }
+
+  /**
+   * Return the status of the sidenav in the storage.
+   */
+  public getSidenavStatus (): boolean | null {
+    return this.baseStorageService.get(BASE_STORAGE_KEYS.SIDENAV)
+  }
+
+  /**
+   * Save the code of the gist file in the storage.
+   */
+  public setGistFileCode (gistId: string, fileName: string, code: string): void {
+    this.baseStorageService.set(`${gistId}/${fileName}`, code)
+  }
+
+  /**
+   * Return the code of the gist file saved in the storage.
+   */
+  public getGistFileCode (gistId: string, fileName: string): string | null {
+    return this.baseStorageService.get(`${gistId}/${fileName}`)
+  }
+
+  /**
+   * Remove the code of the gist file from the storage.
+   */
+  public removeGistFileCode (gistId: string, fileName: string): void {
+    this.baseStorageService.remove(`${gistId}/${fileName}`)
   }
 
 }

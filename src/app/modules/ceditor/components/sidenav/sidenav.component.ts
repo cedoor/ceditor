@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {Location} from '@angular/common'
 import {GistService} from '../../../../core/services/gist/gist.service'
-import {StorageService} from '../../../../core/services/storage/storage.service'
 import {DialogService} from '../../../../core/services/dialog/dialog.service'
 
 @Component({
@@ -19,7 +18,6 @@ export class SidenavComponent implements OnInit {
   constructor (private editorService: EditorService,
                private gistService: GistService,
                private dialogService: DialogService,
-               private storageService: StorageService,
                private location: Location) {
   }
 

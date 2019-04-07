@@ -2,8 +2,8 @@ import {Component} from '@angular/core'
 import {EditorService} from '../../../../core/services/editor/editor.service'
 import {DialogService} from '../../../../core/services/dialog/dialog.service'
 import {SidenavService} from '../../../../core/services/sidenav/sidenav.service'
-import {STORAGE_KEYS, StorageService} from '../../../../core/services/storage/storage.service'
 import {GistService} from '../../../../core/services/gist/gist.service'
+import {StorageService} from '../../../../core/services/storage/storage.service'
 
 @Component({
   selector: 'app-toolbar',
@@ -22,7 +22,7 @@ export class ToolbarComponent {
   public async toggleSidenav () {
     const status = await this.sidenavService.toggle()
 
-    this.storageService.set(STORAGE_KEYS.SIDENAV, status === 'open')
+    this.storageService.setSidenavStatus(status === 'open')
   }
 
   public runCode () {

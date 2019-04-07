@@ -5,7 +5,7 @@ import {DialogService} from '../../core/services/dialog/dialog.service'
 import {GithubService} from '../../core/http/github/github.service'
 import {ActivatedRoute} from '@angular/router'
 import {GistService} from '../../core/services/gist/gist.service'
-import {STORAGE_KEYS, StorageService} from '../../core/services/storage/storage.service'
+import {StorageService} from '../../core/services/storage/storage.service'
 
 @Component({
   selector: 'app-ceditor',
@@ -36,7 +36,11 @@ export class CeditorComponent implements OnInit {
     this.dialogService.showProgressSpinner()
 
     const gist = await this.initGistService()
-    this.cacheGist(gist)
+    this.storageService.addCachedGist({
+      id: gist.id,
+      description: gist.description,
+      fileNames: Object.keys(gist.files)
+    })
 
     this.dialogService.hideProgressSpinner()
   }
@@ -52,38 +56,12 @@ export class CeditorComponent implements OnInit {
   }
 
   /**
-   * Save the gist in the storage.
-   */
-  private cacheGist (gist: any) {
-    let gists = this.storageService.get(STORAGE_KEYS.GISTS)
-    const cachedGist = {
-      id: gist.id,
-      description: gist.description,
-      fileNames: Object.keys(gist.files)
-    }
-
-    if (gists) {
-      const sameGist = gists.find(function (existingGist) {
-        return existingGist.id === gist.id
-      })
-
-      if (!sameGist) {
-        gists.push(cachedGist)
-      }
-    } else {
-      gists = [cachedGist]
-    }
-
-    this.storageService.set(STORAGE_KEYS.GISTS, gists)
-  }
-
-  /**
    * Initialize the sidenav service.
    */
   private initSidenavService () {
     this.sidenavService.init(this.sidenav)
 
-    const sidenavStatus = this.storageService.get(STORAGE_KEYS.SIDENAV)
+    const sidenavStatus = this.storageService.getSidenavStatus()
 
     if (sidenavStatus === null || sidenavStatus === true) {
       this.sidenavService.open()

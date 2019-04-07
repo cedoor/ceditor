@@ -37,7 +37,7 @@ export class GistService {
 
     // Get local cached files.
     for (const key of Object.keys(this.gist.files)) {
-      this.cachedFiles[key] = this.storageService.get(`${this.gist.id}/${key}`)
+      this.cachedFiles[key] = this.storageService.getGistFileCode(this.gist.id, key)
     }
 
     // Set the current file used.
@@ -74,8 +74,8 @@ export class GistService {
    * Set the cached file in the storage if it's different from original gist file.
    */
   public setCachedFile (code: string, fileName: string = this.currentFile) {
-      this.cachedFiles[fileName] = code
-      this.storageService.set(`${this.gist.id}/${fileName}`, code)
+    this.cachedFiles[fileName] = code
+    this.storageService.setGistFileCode(this.gist.id, fileName, code)
   }
 
   /**
@@ -83,7 +83,8 @@ export class GistService {
    */
   public removeCachedFile (fileName: string = this.currentFile) {
     delete this.cachedFiles[fileName]
-    this.storageService.remove(`${this.gist.id}/${fileName}`)
+
+    this.storageService.removeGistFileCode(this.gist.id, fileName)
   }
 
   /**
