@@ -3,13 +3,13 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material'
 import {DialogData} from '../../models/dialog-data'
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  selector: 'app-generic-dialog',
+  templateUrl: './generic-dialog.component.html',
+  styleUrls: ['./generic-dialog.component.scss']
 })
-export class DialogComponent {
+export class GenericDialogComponent {
 
-  constructor (public dialogRef: MatDialogRef<DialogComponent>,
+  constructor (public dialogRef: MatDialogRef<GenericDialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 

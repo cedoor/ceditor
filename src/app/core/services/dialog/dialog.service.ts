@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material'
 import {ProgressSpinnerComponent} from '../../../shared/components/progress-spinner/progress-spinner.component'
-import {DialogComponent} from '../../../shared/components/dialog/dialog.component'
+import {GenericDialogComponent} from '../../../shared/components/generic-dialog/generic-dialog.component'
 import {DialogData} from '../../../shared/models/dialog-data'
 import {AboutDialogComponent} from '../../../modules/ceditor/components/about-dialog/about-dialog.component'
 import {CachedGistsComponent} from '../../../modules/ceditor/components/cached-gists/cached-gists.component'
@@ -59,7 +59,7 @@ export class DialogService {
    * You can create a confirm dialog or a simple info dialog.
    */
   public showGenericDialog (data: DialogData): Promise<number> {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(GenericDialogComponent, {
       data
     })
 

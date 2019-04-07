@@ -10,7 +10,7 @@ import {
   MatTooltipModule
 } from '@angular/material'
 import {ProgressSpinnerComponent} from './components/progress-spinner/progress-spinner.component'
-import {DialogComponent} from './components/dialog/dialog.component'
+import {GenericDialogComponent} from './components/generic-dialog/generic-dialog.component'
 
 @NgModule({
   imports: [
@@ -30,11 +30,11 @@ import {DialogComponent} from './components/dialog/dialog.component'
   ],
   entryComponents: [
     ProgressSpinnerComponent,
-    DialogComponent
+    GenericDialogComponent
   ],
   declarations: [
     ProgressSpinnerComponent,
-    DialogComponent
+    GenericDialogComponent
   ]
 })
 export class SharedModule {
