@@ -32,7 +32,7 @@ export class SidenavComponent implements OnInit {
     const cachedFile = this.gistService.getCachedFile(fileName)
     const file = this.gistService.getFile(fileName)
 
-    if (cachedFile) {
+    if (cachedFile && cachedFile !== file) {
       const result = await this.dialogService.showGenericDialog({
         title: 'Cached code',
         message: 'There is cached code for this file, do you want to use it?',
