@@ -95,4 +95,18 @@ export class StorageService {
     this.baseStorageService.remove(`${gistId}/${fileName}`)
   }
 
+  /**
+   * Set the github token in the storage.
+   */
+  public setGithubToken (token: string): void {
+    this.baseStorageService.set(BASE_STORAGE_KEYS.GITHUB_TOKEN, token)
+  }
+
+  /**
+   * Return the github token saved in the storage.
+   */
+  public getGithubToken (): string {
+    return this.baseStorageService.get(BASE_STORAGE_KEYS.GITHUB_TOKEN)
+  }
+
 }

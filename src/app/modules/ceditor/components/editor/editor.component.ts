@@ -49,6 +49,13 @@ export class EditorComponent implements OnInit {
         document.querySelector('.show-about-dialog-button').click()
       },
       bindKey: {mac: 'alt-I', win: 'alt-I'}
+    }, {
+      name: 'show-settings-dialog',
+      exec: () => {
+        // @ts-ignore
+        document.querySelector('.show-settings-dialog-button').click()
+      },
+      bindKey: {mac: 'alt-S', win: 'alt-S'}
     }])
 
     // Set the code of the editor.

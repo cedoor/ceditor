@@ -1,0 +1,15 @@
+<div class="app-settings">
+  <h2 mat-dialog-title>Settings</h2>
+  <div mat-dialog-content>
+    <mat-form-field class="example-form-field">
+      <input [(ngModel)]="githubToken" type="password"
+             placeholder="Github token" matInput>
+      <button *ngIf="githubToken"
+              (click)="setGithubToken()" aria-label="Save"
+              matTooltip="Update Github token"
+              mat-button matSuffix mat-icon-button>
+        <mat-icon>done</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+</div>

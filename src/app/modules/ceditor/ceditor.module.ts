@@ -6,7 +6,9 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
+  MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
   MatMenuModule,
   MatProgressSpinnerModule,
@@ -21,6 +23,7 @@ import {AboutDialogComponent} from './components/about-dialog/about-dialog.compo
 import {CachedGistsComponent} from './components/cached-gists/cached-gists.component'
 import {ProgressSpinnerComponent} from './components/progress-spinner/progress-spinner.component'
 import {GenericDialogComponent} from './components/generic-dialog/generic-dialog.component'
+import {SettingsComponent} from './components/settings/settings.component'
 
 @NgModule({
   imports: [
@@ -31,6 +34,8 @@ import {GenericDialogComponent} from './components/generic-dialog/generic-dialog
     MatCardModule,
     MatMenuModule,
     MatTooltipModule,
+    MatInputModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatButtonModule,
     MatSnackBarModule,
@@ -46,13 +51,15 @@ import {GenericDialogComponent} from './components/generic-dialog/generic-dialog
     AboutDialogComponent,
     CachedGistsComponent,
     ProgressSpinnerComponent,
-    GenericDialogComponent
+    GenericDialogComponent,
+    SettingsComponent
   ],
   entryComponents: [
     AboutDialogComponent,
     CachedGistsComponent,
     ProgressSpinnerComponent,
-    GenericDialogComponent
+    GenericDialogComponent,
+    SettingsComponent
   ]
 })
 export class CeditorModule {

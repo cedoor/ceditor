@@ -6,6 +6,7 @@ import {DialogData} from '../../../shared/models/dialog-data'
 import {AboutDialogComponent} from '../../../modules/ceditor/components/about-dialog/about-dialog.component'
 import {CachedGistsComponent} from '../../../modules/ceditor/components/cached-gists/cached-gists.component'
 import {GithubService} from '../../http/github/github.service'
+import {SettingsComponent} from '../../../modules/ceditor/components/settings/settings.component'
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,15 @@ export class DialogService {
         licenseURL: license.html_url
       }
     })
+
+    return dialogRef.afterClosed().toPromise()
+  }
+
+  /**
+   * Show the dialog of the settings.
+   */
+  public showSettingsDialog () {
+    const dialogRef = this.dialog.open(SettingsComponent)
 
     return dialogRef.afterClosed().toPromise()
   }

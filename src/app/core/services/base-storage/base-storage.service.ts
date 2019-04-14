@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core'
 
 export enum BASE_STORAGE_KEYS {
   SIDENAV = 'sidenav',
-  GISTS = 'gists'
+  GISTS = 'gists',
+  GITHUB_TOKEN = 'github-token'
 }
 
 @Injectable({

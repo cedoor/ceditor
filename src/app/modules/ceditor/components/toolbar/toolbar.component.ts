@@ -76,6 +76,10 @@ export class ToolbarComponent {
     this.dialogService.showAboutDialog()
   }
 
+  public showSettings () {
+    this.dialogService.showSettingsDialog()
+  }
+
   public showCachedGists () {
     this.dialogService.showCachedGistsDialog()
   }
