@@ -77,7 +77,7 @@ export class EditorComponent implements OnInit {
     const cachedFile = this.gistService.getCachedFile()
     const file = this.gistService.getFile()
 
-    if (cachedFile && cachedFile !== file) {
+    if (cachedFile !== null) {
       const result = await this.dialogService.showGenericDialog({
         title: 'Cached code',
         message: 'There is cached code for this file, do you want to use it?',
@@ -96,7 +96,6 @@ export class EditorComponent implements OnInit {
           this.editorService.setCode(cachedFile)
       }
     } else {
-      this.gistService.removeCachedFile()
       this.editorService.setCode(file)
     }
   }

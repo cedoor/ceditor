@@ -38,7 +38,7 @@ export class ToolbarComponent {
   public async clearCurrentCode () {
     const cachedCode = this.gistService.getCachedFile()
 
-    if (cachedCode) {
+    if (cachedCode !== null) {
       const result = await this.dialogService.showGenericDialog({
         title: 'Remove cached code',
         message: 'Are you sure you want to remove the cached code?',
@@ -70,6 +70,24 @@ export class ToolbarComponent {
       description: this.gist.description,
       fileNames: Object.keys(this.gist.files)
     })
+  }
+
+  public async updateGistFile () {
+    const cachedFile = this.gistService.getCachedFile()
+
+    if (cachedFile !== null) {
+      try {
+        this.dialogService.showProgressSpinner()
+        await this.gistService.updateGistFile()
+        this.dialogService.showMessage('Gist file updated correctly!', 5000)
+      } catch (error) {
+        this.dialogService.showMessage('Github API error. Please, check your token!', 5000)
+      }
+
+      this.dialogService.hideProgressSpinner()
+    } else {
+      this.dialogService.showMessage('No changes to save!', 5000)
+    }
   }
 
   public showAbout () {

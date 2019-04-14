@@ -41,7 +41,9 @@
       <button *ngFor="let gistFile of gistFiles"
               [ngClass]="{ 'selected' : currentFileName === gistFile.filename }"
               (click)="openFile(gistFile.filename)" mat-list-item>
-        <span>{{ gistFile.filename }}</span>
+        <span>
+          {{ gistFile.filename }}{{ gistCachedFiles.includes(gistFile.filename) ? '*' : '' }}
+        </span>
       </button>
     </mat-action-list>
   </div>

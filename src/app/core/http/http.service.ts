@@ -18,7 +18,7 @@ export class HttpService {
       [param: string]: string | string[];
     };
     reportProgress?: boolean;
-    responseType: 'text';
+    responseType?: 'json';
     withCredentials?: boolean;
   }): Promise<any> {
     return this.http.get(url, options).toPromise()
@@ -37,6 +37,21 @@ export class HttpService {
     withCredentials?: boolean;
   }): Promise<any> {
     return this.http.post(url, body, options).toPromise()
+  }
+
+  public patch (url: string, body: any | null, options?: {
+    headers?: HttpHeaders | {
+      [header: string]: string | string[];
+    };
+    observe?: 'body';
+    params?: HttpParams | {
+      [param: string]: string | string[];
+    };
+    reportProgress?: boolean;
+    responseType?: 'json';
+    withCredentials?: boolean;
+  }) {
+    return this.http.patch(url, body, options).toPromise()
   }
 
 }

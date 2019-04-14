@@ -1,6 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core'
 import {GithubService} from '../../http/github/github.service'
 import {StorageService} from '../storage/storage.service'
+import {Observable} from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,14 @@ export class GistService {
   private readonly cachedFiles: any
 
   private onInitEvent: EventEmitter<any>
+  private onUpdateEvent: EventEmitter<any>
+  private onCacheUpdateEvent: EventEmitter<any>
 
   constructor (private githubService: GithubService,
                private storageService: StorageService) {
     this.onInitEvent = new EventEmitter()
+    this.onUpdateEvent = new EventEmitter()
+    this.onCacheUpdateEvent = new EventEmitter()
     this.cachedFiles = {}
   }
 
@@ -43,6 +48,7 @@ export class GistService {
     // Set the current file used.
     this.setCurrentFileName(fileName)
 
+    this.onCacheUpdateEvent.next(this.cachedFiles)
     this.onInitEvent.next(this.gist)
     this.onInitEvent.complete()
 
@@ -52,8 +58,44 @@ export class GistService {
   /**
    * Return the promise of the initialization of the gist.
    */
-  public onInit (): Promise<string> {
+  public onInit (): Promise<any> {
     return this.onInitEvent.toPromise()
+  }
+
+  /**
+   * Return the observable for the update of the gist.
+   */
+  public onUpdate (): Observable<any> {
+    return this.onUpdateEvent.asObservable()
+  }
+
+  /**
+   * Return the observable for the cached files update of the gist.
+   */
+  public onCacheUpdate (): Observable<any> {
+    return this.onCacheUpdateEvent.asObservable()
+  }
+
+  /**
+   * Update the remote gist file with the content of cached file.
+   */
+  public async updateGistFile (fileName: string = this.currentFile): Promise<any> {
+    if (this.cachedFiles[fileName]) {
+      const files = {}
+
+      files[fileName] = {
+        content: this.cachedFiles[fileName]
+      }
+
+      this.gist = await this.githubService.updateGist(this.gist.id, {
+        description: this.gist.description,
+        files
+      })
+
+      this.onUpdateEvent.next(this.gist)
+
+      this.removeCachedFile(fileName)
+    }
   }
 
   /**
@@ -74,17 +116,24 @@ export class GistService {
    * Set the cached file in the storage if it's different from original gist file.
    */
   public setCachedFile (code: string, fileName: string = this.currentFile) {
-    this.cachedFiles[fileName] = code
-    this.storageService.setGistFileCode(this.gist.id, fileName, code)
+    const file = this.getFile(fileName)
+
+    if (code !== file) {
+      this.cachedFiles[fileName] = code
+      this.storageService.setGistFileCode(this.gist.id, fileName, code)
+      this.onCacheUpdateEvent.next(this.cachedFiles)
+    } else {
+      this.removeCachedFile(fileName)
+    }
   }
 
   /**
    * Remove the cached file in the storage if it's different from original gist file.
    */
   public removeCachedFile (fileName: string = this.currentFile) {
-    delete this.cachedFiles[fileName]
-
+    this.cachedFiles[fileName] = null
     this.storageService.removeGistFileCode(this.gist.id, fileName)
+    this.onCacheUpdateEvent.next(this.cachedFiles)
   }
 
   /**

@@ -19,6 +19,12 @@
       <mat-icon aria-label="">play_arrow</mat-icon>
     </button>
     <button mat-icon-button
+            (click)="updateGistFile()"
+            class="save-code-button"
+            matTooltip="Update the gist file">
+      <mat-icon aria-label="">update</mat-icon>
+    </button>
+    <button mat-icon-button
             [matMenuTriggerFor]="cacheMenu"
             class="show-cache-menu-button"
             matTooltip="Show cache menu">
