@@ -49,10 +49,7 @@ It is also possible to import the code of other gist files and libraries via CDN
 - :heavy_check_mark: Sidenav gist files navigation
 - :heavy_check_mark: About app dialog
 - :heavy_check_mark: Cached gists
-- :white_large_square: More default Ceditor files
-- :white_large_square: Create new gist
-- :white_large_square: Update current gist files
-- :white_large_square: Create new gist file
+- :heavy_check_mark: Update gist files
 
 ## :hammer: Install
 
