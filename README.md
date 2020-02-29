@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://ceditor.cedoor.org">
+  <a href="https://ceditor.cedoor.dev">
   	<img src="https://img.shields.io/badge/Ceditor-TS%2FJS%20online%20editor-green.svg">
   </a>
   <a href="https://david-dm.org/cedoor/ceditor">
@@ -136,6 +136,6 @@ Examples:
 
 ## :telephone_receiver: Contacts
 ### :boy: Developers
-* e-mail : omardesogus9@gmail.com
+* e-mail : me@cedoor.dev
 * github : [@cedoor](https://github.com/cedoor)
-* website : https://cedoor.org
+* website : https://cedoor.dev
