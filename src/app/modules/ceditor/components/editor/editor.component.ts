@@ -10,7 +10,7 @@ import {DialogService} from '../../../../core/services/dialog/dialog.service'
 })
 export class EditorComponent implements OnInit {
 
-  @ViewChild('editor') public editorReference: ElementRef
+  @ViewChild('editor', { static: true }) public editorReference: ElementRef
 
   public gist: any
 

@@ -14,7 +14,7 @@ import {StorageService} from '../../core/services/storage/storage.service'
 })
 export class CeditorComponent implements OnInit {
 
-  @ViewChild('sidenav') public sidenav: MatSidenav
+  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav
 
   constructor (private sidenavService: SidenavService,
                private githubService: GithubService,
