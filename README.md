@@ -41,15 +41,15 @@ It is also possible to import the code of other gist files and libraries via CDN
 
 ## :rocket: Features
 
-- :heavy_check_mark: Read gist files
-- :heavy_check_mark: Run the TypeScript/JavaScript code
-- :heavy_check_mark: Import JavaScript libraries via CDN
-- :heavy_check_mark: Import gist files (TypeScript/JavaScript code) in the editor
-- :heavy_check_mark: Sidenav gist informations
-- :heavy_check_mark: Sidenav gist files navigation
-- :heavy_check_mark: About app dialog
-- :heavy_check_mark: Cached gists
-- :heavy_check_mark: Update gist files
+- [x] Read gist files
+- [x] Run the TypeScript/JavaScript code
+- [x] Import JavaScript libraries via CDN
+- [x] Import gist files (TypeScript/JavaScript code) in the editor
+- [x] Sidenav gist informations
+- [x] Sidenav gist files navigation
+- [x] About app dialog
+- [x] Cached gists
+- [x] Update gist files
 
 ## :hammer: Install
 
