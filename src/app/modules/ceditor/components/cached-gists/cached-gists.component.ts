@@ -11,7 +11,7 @@ export class CachedGistsComponent {
 
   public cachedGists: CachedGist[]
 
-  constructor (private storageService: StorageService) {
+  constructor(private storageService: StorageService) {
     this.cachedGists = this.storageService.getCachedGists()
   }
 

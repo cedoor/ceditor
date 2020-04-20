@@ -14,28 +14,28 @@ export class ToolbarComponent {
 
   private gist: any
 
-  constructor (private editorService: EditorService,
-               private dialogService: DialogService,
-               private gistService: GistService,
-               private storageService: StorageService,
-               private sidenavService: SidenavService) {
+  constructor(private editorService: EditorService,
+              private dialogService: DialogService,
+              private gistService: GistService,
+              private storageService: StorageService,
+              private sidenavService: SidenavService) {
   }
 
-  public async ngOnInit () {
+  public async ngOnInit() {
     this.gist = await this.gistService.onInit()
   }
 
-  public async toggleSidenav () {
+  public async toggleSidenav() {
     const status = await this.sidenavService.toggle()
 
     this.storageService.setSidenavStatus(status === 'open')
   }
 
-  public runCode () {
+  public runCode() {
     this.editorService.run()
   }
 
-  public async clearCurrentCode () {
+  public async clearCurrentCode() {
     const cachedCode = this.gistService.getCachedFile()
 
     if (cachedCode !== null) {
@@ -60,11 +60,11 @@ export class ToolbarComponent {
     }
   }
 
-  public removeGistFromCache () {
+  public removeGistFromCache() {
     this.storageService.removeCachedGist(this.gist.id)
   }
 
-  public addGistToCache () {
+  public addGistToCache() {
     this.storageService.addCachedGist({
       id: this.gist.id,
       description: this.gist.description,
@@ -72,7 +72,7 @@ export class ToolbarComponent {
     })
   }
 
-  public async updateGistFile () {
+  public async updateGistFile() {
     const cachedFile = this.gistService.getCachedFile()
 
     if (cachedFile !== null) {
@@ -90,15 +90,15 @@ export class ToolbarComponent {
     }
   }
 
-  public showAbout () {
+  public showAbout() {
     this.dialogService.showAboutDialog()
   }
 
-  public showSettings () {
+  public showSettings() {
     this.dialogService.showSettingsDialog()
   }
 
-  public showCachedGists () {
+  public showCachedGists() {
     this.dialogService.showCachedGistsDialog()
   }
 

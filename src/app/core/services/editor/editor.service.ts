@@ -17,11 +17,11 @@ export class EditorService {
 
   private editor: Editor
 
-  constructor (private githubService: GithubService,
-               private gistService: GistService) {
+  constructor(private githubService: GithubService,
+              private gistService: GistService) {
   }
 
-  public createEditor (htmlElement: HTMLElement) {
+  public createEditor(htmlElement: HTMLElement) {
     this.editor = ace.edit(htmlElement)
 
     this.editor.setOptions({
@@ -35,23 +35,23 @@ export class EditorService {
     })
   }
 
-  public setCode (code: string) {
+  public setCode(code: string) {
     this.editor.setValue(code, -1)
   }
 
-  public getCode (): string {
+  public getCode(): string {
     return this.editor.getValue()
   }
 
-  public addCommands (commands: EditorCommand[]) {
+  public addCommands(commands: EditorCommand[]) {
     this.editor.commands.addCommands(commands)
   }
 
-  public async run () {
+  public async run() {
     await this.eval(this.editor.getValue())
   }
 
-  private async eval (code: string) {
+  private async eval(code: string) {
     // All Ceditor functions.
     const script = this.script.bind(this)
     const gist = this.getGist.bind(this)
@@ -59,7 +59,7 @@ export class EditorService {
     return await eval(ts.transpile(code))
   }
 
-  private async getGist (gistId: string, fileName?: string, cached: boolean = false) {
+  private async getGist(gistId: string, fileName?: string, cached: boolean = false) {
     let file
 
     if (cached === false) {
@@ -78,7 +78,7 @@ export class EditorService {
     return await this.eval(file)
   }
 
-  private script (url: string): Promise<any> {
+  private script(url: string): Promise<any> {
     return new Promise((resolve, reject) => {
       if (this.scriptAlreadyExist(url)) {
         resolve()
@@ -98,7 +98,7 @@ export class EditorService {
     })
   }
 
-  private scriptAlreadyExist (url: string): boolean {
+  private scriptAlreadyExist(url: string): boolean {
     for (const script of Array.from(document.querySelectorAll('.ceditor-script'))) {
       if (script.getAttribute('src') === url) {
         return true

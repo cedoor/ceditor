@@ -10,20 +10,20 @@ import {DialogService} from '../../../../core/services/dialog/dialog.service'
 })
 export class EditorComponent implements OnInit {
 
-  @ViewChild('editor', { static: true }) public editorReference: ElementRef
+  @ViewChild('editor', {static: true}) public editorReference: ElementRef
 
   public gist: any
 
-  constructor (private editorService: EditorService,
-               private gistService: GistService,
-               private dialogService: DialogService) {
+  constructor(private editorService: EditorService,
+              private gistService: GistService,
+              private dialogService: DialogService) {
   }
 
   /**
    * Create the editor with commands and code after
    * the component initialization.
    */
-  public async ngOnInit (): Promise<void> {
+  public async ngOnInit(): Promise<void> {
     // Create the editor.
     this.editorService.createEditor(this.editorReference.nativeElement)
 
@@ -72,7 +72,7 @@ export class EditorComponent implements OnInit {
   /**
    * Set the code of the editor.
    */
-  private async setCode () {
+  private async setCode() {
     this.gist = await this.gistService.onInit()
     const cachedFile = this.gistService.getCachedFile()
     const file = this.gistService.getFile()

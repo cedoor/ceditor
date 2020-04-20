@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core'
-import {MatSidenav} from '@angular/material'
+import {MatSidenav} from '@angular/material/sidenav';
 import {SidenavService} from '../../core/services/sidenav/sidenav.service'
 import {DialogService} from '../../core/services/dialog/dialog.service'
 import {GithubService} from '../../core/http/github/github.service'
@@ -14,25 +14,25 @@ import {StorageService} from '../../core/services/storage/storage.service'
 })
 export class CeditorComponent implements OnInit {
 
-  @ViewChild('sidenav', { static: true }) public sidenav: MatSidenav
+  @ViewChild('sidenav', {static: true}) public sidenav: MatSidenav
 
-  constructor (private sidenavService: SidenavService,
-               private githubService: GithubService,
-               private gistService: GistService,
-               private storageService: StorageService,
-               private route: ActivatedRoute,
-               private dialogService: DialogService) {
+  constructor(private sidenavService: SidenavService,
+              private githubService: GithubService,
+              private gistService: GistService,
+              private storageService: StorageService,
+              private route: ActivatedRoute,
+              private dialogService: DialogService) {
     this.init()
   }
 
-  public ngOnInit () {
+  public ngOnInit() {
     this.initSidenavService()
   }
 
   /**
    * Initialization function of the component.
    */
-  private async init () {
+  private async init() {
     this.dialogService.showProgressSpinner()
 
     await this.initGistService()
@@ -43,7 +43,7 @@ export class CeditorComponent implements OnInit {
   /**
    * Initialize the gist service.
    */
-  private async initGistService (): Promise<any> {
+  private async initGistService(): Promise<any> {
     const gistId = this.route.snapshot.paramMap.get('gist_id')
     const filename = this.route.snapshot.paramMap.get('filename')
 
@@ -53,7 +53,7 @@ export class CeditorComponent implements OnInit {
   /**
    * Initialize the sidenav service.
    */
-  private initSidenavService () {
+  private initSidenavService() {
     this.sidenavService.init(this.sidenav)
 
     const sidenavStatus = this.storageService.getSidenavStatus()

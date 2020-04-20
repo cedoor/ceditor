@@ -16,14 +16,14 @@ export class SidenavComponent {
   public gistCachedFiles: string[]
   public currentFileName: string
 
-  constructor (private editorService: EditorService,
-               private gistService: GistService,
-               private dialogService: DialogService,
-               private location: Location) {
+  constructor(private editorService: EditorService,
+              private gistService: GistService,
+              private dialogService: DialogService,
+              private location: Location) {
     this.init()
   }
 
-  public async init () {
+  public async init() {
     this.gistService.onUpdate().subscribe((gist: any) => {
       this.updateGist(gist)
     })
@@ -37,7 +37,7 @@ export class SidenavComponent {
     this.updateGist(await this.gistService.onInit())
   }
 
-  public async openFile (fileName: string) {
+  public async openFile(fileName: string) {
     const cachedFile = this.gistService.getCachedFile(fileName)
     const file = this.gistService.getFile(fileName)
 
@@ -66,7 +66,7 @@ export class SidenavComponent {
     this.location.replaceState(`/${this.gist.id}/${fileName}`)
   }
 
-  private updateGist (gist: any) {
+  private updateGist(gist: any) {
     this.gist = gist
 
     this.gistFiles = Object.values(this.gist.files)

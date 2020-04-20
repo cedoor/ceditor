@@ -10,15 +10,15 @@ export class SettingsComponent {
 
   public githubToken: string
 
-  constructor (private storageService: StorageService) {
+  constructor(private storageService: StorageService) {
     this.init()
   }
 
-  public init () {
+  public init() {
     this.githubToken = this.storageService.getGithubToken()
   }
 
-  public setGithubToken () {
+  public setGithubToken() {
     this.storageService.setGithubToken(this.githubToken)
   }
 

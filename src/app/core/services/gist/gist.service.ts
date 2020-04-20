@@ -17,8 +17,8 @@ export class GistService {
   private onUpdateEvent: EventEmitter<any>
   private onCacheUpdateEvent: EventEmitter<any>
 
-  constructor (private githubService: GithubService,
-               private storageService: StorageService) {
+  constructor(private githubService: GithubService,
+              private storageService: StorageService) {
     this.onInitEvent = new EventEmitter()
     this.onUpdateEvent = new EventEmitter()
     this.onCacheUpdateEvent = new EventEmitter()
@@ -28,7 +28,7 @@ export class GistService {
   /**
    * Initialize the service by setting the gist used in the editor.
    */
-  public async init (gistId: string, fileName: string): Promise<any> {
+  public async init(gistId: string, fileName: string): Promise<any> {
     // Get the remote gist with Github APIs.
     if (gistId && typeof gistId === 'string') {
       try {
@@ -58,28 +58,28 @@ export class GistService {
   /**
    * Return the promise of the initialization of the gist.
    */
-  public onInit (): Promise<any> {
+  public onInit(): Promise<any> {
     return this.onInitEvent.toPromise()
   }
 
   /**
    * Return the observable for the update of the gist.
    */
-  public onUpdate (): Observable<any> {
+  public onUpdate(): Observable<any> {
     return this.onUpdateEvent.asObservable()
   }
 
   /**
    * Return the observable for the cached files update of the gist.
    */
-  public onCacheUpdate (): Observable<any> {
+  public onCacheUpdate(): Observable<any> {
     return this.onCacheUpdateEvent.asObservable()
   }
 
   /**
    * Update the remote gist file with the content of cached file.
    */
-  public async updateGistFile (fileName: string = this.currentFile): Promise<any> {
+  public async updateGistFile(fileName: string = this.currentFile): Promise<any> {
     if (this.cachedFiles[fileName]) {
       const files = {}
 
@@ -101,21 +101,21 @@ export class GistService {
   /**
    * Set the name of the current used gist file.
    */
-  public setCurrentFileName (fileName?: string) {
+  public setCurrentFileName(fileName?: string) {
     this.currentFile = fileName || Object.keys(this.gist.files)[0]
   }
 
   /**
    * Get the name of the current used gist file.
    */
-  public getCurrentFileName (): string {
+  public getCurrentFileName(): string {
     return this.currentFile
   }
 
   /**
    * Set the cached file in the storage if it's different from original gist file.
    */
-  public setCachedFile (code: string, fileName: string = this.currentFile) {
+  public setCachedFile(code: string, fileName: string = this.currentFile) {
     const file = this.getFile(fileName)
 
     if (code !== file) {
@@ -130,7 +130,7 @@ export class GistService {
   /**
    * Remove the cached file in the storage if it's different from original gist file.
    */
-  public removeCachedFile (fileName: string = this.currentFile) {
+  public removeCachedFile(fileName: string = this.currentFile) {
     this.cachedFiles[fileName] = null
     this.storageService.removeGistFileCode(this.gist.id, fileName)
     this.onCacheUpdateEvent.next(this.cachedFiles)
@@ -139,7 +139,7 @@ export class GistService {
   /**
    * Return the file with the name passed as parameter or the current file.
    */
-  public getFile (fileName: string = this.currentFile) {
+  public getFile(fileName: string = this.currentFile) {
     return this.gist.files[fileName].content
   }
 
@@ -147,14 +147,14 @@ export class GistService {
    * Return the cached code of the file with the name passed as parameter
    * or the cached code of the current file.
    */
-  public getCachedFile (fileName: string = this.currentFile) {
+  public getCachedFile(fileName: string = this.currentFile) {
     return this.cachedFiles[fileName]
   }
 
   /**
    * Return the default gist used in Ceditor.
    */
-  private getDefault (): Promise<any> {
+  private getDefault(): Promise<any> {
     return this.githubService.getGist('6490a8bcea24c3a58e5a7233dd5f72e1')
   }
 

@@ -6,10 +6,10 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 })
 export class HttpService {
 
-  constructor (private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
-  public get (url: string, options?: {
+  public get(url: string, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };
@@ -24,7 +24,7 @@ export class HttpService {
     return this.http.get(url, options).toPromise()
   }
 
-  public post (url: string, body: any | null, options?: {
+  public post(url: string, body: any | null, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };
@@ -39,7 +39,7 @@ export class HttpService {
     return this.http.post(url, body, options).toPromise()
   }
 
-  public patch (url: string, body: any | null, options?: {
+  public patch(url: string, body: any | null, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core'
-import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material'
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ProgressSpinnerComponent} from '../../../modules/ceditor/components/progress-spinner/progress-spinner.component'
 import {GenericDialogComponent} from '../../../modules/ceditor/components/generic-dialog/generic-dialog.component'
 import {DialogData} from '../../../shared/models/dialog-data'
@@ -15,15 +16,15 @@ export class DialogService {
 
   private progressSpinnerRef: MatDialogRef<ProgressSpinnerComponent>
 
-  constructor (private snackBar: MatSnackBar,
-               private githubService: GithubService,
-               private dialog: MatDialog) {
+  constructor(private snackBar: MatSnackBar,
+              private githubService: GithubService,
+              private dialog: MatDialog) {
   }
 
   /**
    * Show a message with the material snack bar.
    */
-  public showMessage (message: string, duration?: number) {
+  public showMessage(message: string, duration?: number) {
     this.snackBar.open(message, 'Dismiss', {
       duration
     })
@@ -32,7 +33,7 @@ export class DialogService {
   /**
    * Show the progress spinner.
    */
-  public showProgressSpinner (duration?: number) {
+  public showProgressSpinner(duration?: number) {
     this.progressSpinnerRef = this.dialog.open(ProgressSpinnerComponent, {
       disableClose: true,
       panelClass: 'progress-spinner-dialog'
@@ -49,7 +50,7 @@ export class DialogService {
   /**
    * Hide the progress spinner.
    */
-  public hideProgressSpinner () {
+  public hideProgressSpinner() {
     if (this.progressSpinnerRef) {
       this.progressSpinnerRef.close()
     }
@@ -59,7 +60,7 @@ export class DialogService {
    * Create a generic dialog with title, message and actions.
    * You can create a confirm dialog or a simple info dialog.
    */
-  public showGenericDialog (data: DialogData): Promise<number> {
+  public showGenericDialog(data: DialogData): Promise<number> {
     const dialogRef = this.dialog.open(GenericDialogComponent, {
       data
     })
@@ -70,7 +71,7 @@ export class DialogService {
   /**
    * Show the about dialog.
    */
-  public async showAboutDialog (): Promise<number> {
+  public async showAboutDialog(): Promise<number> {
     this.showProgressSpinner()
 
     const latestRelease = await this.githubService.getLatestRelease('cedoor', 'ceditor')
@@ -91,7 +92,7 @@ export class DialogService {
   /**
    * Show the dialog of the settings.
    */
-  public showSettingsDialog () {
+  public showSettingsDialog() {
     const dialogRef = this.dialog.open(SettingsComponent)
 
     return dialogRef.afterClosed().toPromise()
@@ -100,7 +101,7 @@ export class DialogService {
   /**
    * Show the dialog of the cached gists.
    */
-  public showCachedGistsDialog (): Promise<number> {
+  public showCachedGistsDialog(): Promise<number> {
     const dialogRef = this.dialog.open(CachedGistsComponent)
 
     return dialogRef.afterClosed().toPromise()

@@ -13,21 +13,21 @@ export class BaseStorageService {
 
   private storage: Storage
 
-  constructor () {
+  constructor() {
     this.storage = localStorage
   }
 
   /**
    * Set an item in the used storage.
    */
-  public set (key: string, item: any): void {
+  public set(key: string, item: any): void {
     this.storage.setItem(key, JSON.stringify(item))
   }
 
   /**
    * Get an item from the user storage.
    */
-  public get (key: string): any {
+  public get(key: string): any {
     const item = this.storage.getItem(key)
 
     try {
@@ -40,7 +40,7 @@ export class BaseStorageService {
   /**
    * Remove an item from the used storage.
    */
-  public remove (key: string): void {
+  public remove(key: string): void {
     this.storage.removeItem(key)
   }
 

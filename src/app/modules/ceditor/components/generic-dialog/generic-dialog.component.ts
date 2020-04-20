@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core'
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material'
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {DialogData} from '../../../../shared/models/dialog-data'
 
 @Component({
@@ -9,11 +9,11 @@ import {DialogData} from '../../../../shared/models/dialog-data'
 })
 export class GenericDialogComponent {
 
-  constructor (public dialogRef: MatDialogRef<GenericDialogComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<GenericDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
-  public onButtonClick (result: number): void {
+  public onButtonClick(result: number): void {
     this.dialogRef.close(result)
   }
 
