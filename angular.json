@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/ceditor",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -55,6 +56,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -130,41 +135,6 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "mmp": {
-      "root": "projects/mmp",
-      "sourceRoot": "projects/mmp/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/mmp/tsconfig.lib.json",
-            "project": "projects/mmp/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/mmp/src/test.ts",
-            "tsConfig": "projects/mmp/tsconfig.spec.json",
-            "karmaConfig": "projects/mmp/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/mmp/tsconfig.lib.json",
-              "projects/mmp/tsconfig.spec.json"
-            ],
             "exclude": [
               "**/node_modules/**"
             ]
