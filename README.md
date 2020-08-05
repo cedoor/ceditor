@@ -1,3 +1,10 @@
+<p align="center">
+    <h1 align="center">
+         :broken_heart: Project no longer supported
+    </h1>
+    <p align="center">Fork it to continue development!</p>
+</p>
+
 <h1 align="center" title="Ceditor">
   <img width="120" alt="Ceditor logo" src="https://github.com/cedoor/ceditor/blob/master/resources/icon.png">
   Ceditor<sup>beta</sup>
